@@ -161,3 +161,13 @@ skipped.csv               peptides with no Boltz co-fold (BoltzGen bg33_*/bgox31
 **morph movies are all in `results/morphs/`** (one file per peptide×lane), and the
 patch-colored endpoint structures + per-job movie sit in each
 `results/<mol>/<peptide>/<lane>/` folder alongside that job's numbers.
+
+**Viewing a peptide's three lanes together.** `run_batch.py` also runs `make_pymol.py`,
+which writes one PyMOL script per peptide into `results/morphs/`. Each loads that peptide's
+ESMFold / OF3-apo / RF3-apo morphs as separate colored objects, overlaid on their shared
+bound (Boltz) state, ready to play as a synchronized movie:
+```sh
+cd results/morphs
+pymol octinoxate_s3_esm2_f4.pml      # press play; blue=ESMFold, salmon=OF3-apo, green=RF3-apo
+```
+Regenerate the scripts alone (without rerunning analyses) with `python code/make_pymol.py`.

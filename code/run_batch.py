@@ -156,6 +156,11 @@ def main():
         w.writerow(["mol", "peptide", "reason"])
         w.writerows(skipped)
     write_results_md(recs, skipped)
+    try:
+        import make_pymol
+        make_pymol.main()      # per-peptide PyMOL loader scripts in results/morphs/
+    except SystemExit:
+        pass
     log(f"DONE: {done} analyses this run; {len(recs)} total in results; skipped {len(skipped)} peptides (no co-fold)")
 
 
