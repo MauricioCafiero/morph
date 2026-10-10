@@ -62,12 +62,16 @@ def main():
         for lane in LANE_ORDER:
             if lane in lanes and lane != ref_lane:
                 out.append(f"align {lane}, {ref_lane}, mobile_state={n}, target_state={n}")
-        out += ["", "hide everything", "show cartoon"]
+        out += ["", "hide everything", "show cartoon",
+                "dss                          # assign secondary structure (PDBs carry none) so",
+                "                             # helices/strands render as ribbon, not thin coil",
+                "set cartoon_transparency, 0",
+                "set cartoon_fancy_helices, 1"]
         for lane in LANE_ORDER:
             if lane in lanes:
                 out.append(f"color {LANE_COLORS[lane]}, {lane}")
         out += ["", "set all_states, off          # show one movie frame at a time",
-                "bg_color white", "set movie_fps, 15", "orient",
+                "bg_color black", "set ray_opaque_background, 0", "set movie_fps, 15", "orient",
                 "set scene_buttons, 1",
                 "# the three lanes share states 1..%d; drag the slider or press play to morph" % n]
         pml = os.path.join(MORPHS, f"{mol_pep}.pml")
