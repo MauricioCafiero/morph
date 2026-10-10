@@ -65,6 +65,8 @@ def main():
                "reinitialize",
                "python",
                "from pymol import cmd",
+               "cmd.set('suspend_undo', 1)    # the movie toggles 123 objects per frame; recording that",
+               "                              # as undo history fills memory and freezes playback/pause",
                f"n = {n}",
                f"lanes = [{lane_tuples}]        # (name, color, file); first is the alignment ref",
                "ref = lanes[0][0]",
