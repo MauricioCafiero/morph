@@ -1,22 +1,30 @@
 #!/usr/bin/env python3
 """
-run_batch.py — morph + strain + surface-patch analysis for every peptide that has
-a Boltz co-fold, across all three apo lanes (ESMFold, OF3-apo, RF3-apo), side by side.
+run_batch.py — morph + strain + surface-patch analysis for every peptide, across all
+three apo lanes (ESMFold, OF3-apo, RF3-apo).
 
-Discovers peptides as the intersection of a molecule's fold lanes and its Boltz
-results, then for each (molecule, peptide, lane) writes under results/:
+Peptides are the apo folds that have a bound structure: the Boltz co-fold, or for
+BoltzGen peptides (bg33_N, bgox31_N) BoltzGen's own co-fold from boltzgen_local.
+Input roots can be overridden with MORPH_PEP_ROOT and MORPH_BOLTZGEN_ROOT. For each
+(molecule, peptide, lane) it writes under results/:
 
   results/<mol>/<peptide>/<lane>/
-      morph.pdb            apo(lane) -> boltz co-fold trajectory (PyMOL movie)
+      morph.pdb            apo(lane) -> bound trajectory (PyMOL movie)
       <peptide>_<lane>.pdb, <peptide>_boltz.pdb   patch-colored structures
       <peptide>_residues.csv, <peptide>_summary.txt
-  results/strain_summary.csv     one row per (mol, peptide, lane): apo/cofold E, dE
-  results/patch_summary.csv      exposed pos/neg/hydrophobic spots + buried-on-fold
-  results/skipped.csv            peptides with no Boltz or BoltzGen co-fold found
-  results/run.log                progress
+      <lane>.pdb, <lane>_H.pdb                     peptide + cached protonation (strain)
+      metrics.json                                 all numbers; written last = done-sentinel
+  results/<mol>/<peptide>/_boltz/  bound structure relaxed once, shared by all lanes
+  results/morphs/                  every morph movie + one PyMOL script per peptide
+  results/strain_summary.csv       per (mol, peptide, lane): E_apo, E_bound, dE, RMSDs, flags
+  results/patch_summary.csv        exposed +/-/hydrophobic counts, buried / newly exposed
+  results/RESULTS.md               one row per peptide: strain per lane + Apo/Bound patches
+  results/skipped.csv              peptides with no bound structure found
+  results/run.log                  progress
 
-Resumable: a (mol, peptide, lane) whose morph.pdb + summary already exist is skipped.
-Run with the openmm-md env python (needs openmm, pdbfixer, mdtraj).
+Resumable: jobs with a metrics.json are skipped, and the CSVs / RESULTS.md / PyMOL
+scripts are rebuilt from all metrics.json present. Run with the openmm-md env python
+(needs openmm, pdbfixer, mdtraj).
 """
 import csv
 import json
@@ -70,6 +78,7 @@ def log(msg):
 
 
 def main():
+    """Find peptides, run every missing (mol, peptide, lane) job, then rebuild all summaries."""
     os.makedirs(RESULTS, exist_ok=True)
     skipped = []
     done = 0
@@ -233,6 +242,9 @@ def write_results_md(recs, skipped):
         return f"{len(a['pos'])} +, {len(a['neg'])} −, {len(a['hyd'])} hydrophobic"
 
     def bound_cell(r):
+        """Fate of each apo patch in the bound state: >=50% of its residues in one bound patch
+        -> still exposed; else >=50% buried -> buried; else broken up. Bound patches with
+        <50% overlap with every apo patch -> new."""
         a, b = r["patches"]["apo"], r["patches"]["bound"]
         buried = set(r["buried_on_fold"])
         parts = []

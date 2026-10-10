@@ -1,17 +1,25 @@
 #!/usr/bin/env python3
 """
-make_pymol.py — write PyMOL scripts that load each peptide's apo-lane morphs together.
+make_pymol.py — write one PyMOL script per peptide for its three apo -> bound morphs.
 
 Scans results/morphs/ (files named <mol>_<peptide>_<lane>_to_boltz.pdb) and, for every
-peptide, writes results/morphs/<mol>_<peptide>.pml which loads that peptide's three lane
-morphs (ESMFold / OF3-apo / RF3-apo) as separate multi-state objects, brings them into a
-common frame via their shared final (Boltz-bound) state, colors them per lane, and leaves
-them ready to play as a synchronized movie.
+peptide, writes results/morphs/<mol>_<peptide>.pml. The script:
+  * loads the three lane morphs (ESMFold / OF3-apo / RF3-apo) and aligns them on their
+    shared final (bound) state;
+  * splits each lane into one object per frame and runs dss on each, so secondary
+    structure is computed per frame (PyMOL stores one ss per atom, so a single
+    multi-state object can't carry per-frame secondary structure);
+  * groups each lane's frame objects under one clickable name (esmfold / of3apo / rf3apo),
+    all off by default;
+  * builds a movie that shows frame i of each lane and hides its neighbours, so a lane
+    whose group is off stays hidden and clicking group names is the whole interface;
+  * opens paused on frame 1. Play with mplay; stop with mstop (the GUI pause button
+    doesn't stop it). suspend_undo is set where the PyMOL build supports it.
 
 Run from the repo root (reads what run_batch.py produced):
     python code/make_pymol.py
-Then, to view one peptide (from the morphs folder so the bare filenames resolve):
-    cd results/morphs && pymol octinoxate_s3_esm2_f4.pml      # press play
+Then view one peptide from the morphs folder so the bare filenames resolve:
+    cd results/morphs && pymol octinoxate_s3_esm2_f4.pml
 """
 import os
 import sys
@@ -29,6 +37,7 @@ def n_states(pdb_path):
 
 
 def main():
+    """Write results/morphs/<mol>_<peptide>.pml for every peptide with morphs there."""
     if not os.path.isdir(MORPHS):
         sys.exit(f"no morphs folder at {MORPHS} — run code/run_batch.py first")
 

@@ -91,6 +91,7 @@ def parse_cif(path, chain):
 
 
 def load(path, chain):
+    """Peptide atoms of one chain from a .pdb or .cif, keyed by (resseq, atom name)."""
     return parse_cif(path, chain) if path.lower().endswith(".cif") else parse_pdb(path, chain)
 
 

@@ -4,18 +4,21 @@ strain.py — apo -> co-fold peptide conformational strain, as an MM energy
 difference (ff14SB + GBn2 implicit solvent), the same force field the openmm
 repo uses for protein MD.
 
-For each state: take the peptide (ligand dropped), add hydrogens with PDBFixer
-at the given pH, relax only the hydrogens (heavy atoms restrained) to clear
-placement clashes, then take the single-point potential energy. Strain is the
-difference, dE = E(cofold conformation) - E(apo conformation): positive means the
-bound conformation costs the peptide internal energy relative to its apo fold.
+For each state: take the peptide (ligand dropped), add hydrogens with PDBFixer at
+the given pH (cached, since PDBFixer's hydrogen placement varies per call), apply an
+extremely limited declash relaxation (RELAX_ITERS = 30 iterations, force target
+RELAX_TOL = 500 kJ/mol/nm, single-threaded CPU) that pulls steric overlaps apart
+without changing the conformation, then take the potential energy. The heavy-atom
+RMSD the relaxation introduced is returned so callers can flag moves past
+MAX_HEAVY_RMSD. Strain is dE = E(cofold conformation) - E(apo conformation):
+positive means the bound conformation costs the peptide energy relative to its apo fold.
 
-Reads .pdb and Boltz/OpenFold .cif (peptide ATOM records only) via morph.py.
+Reads .pdb and Boltz/BoltzGen/OpenFold .cif (peptide ATOM records only) via morph.py.
 
 Usage:
   strain.py apo.pdb cofold.cif
-  strain.py --labels apo_esm,boltz --ph 7.0 apo.pdb cofold.cif
-  strain.py --full-min ...     # fully minimize each state instead of H-only
+  strain.py --labels esmfold,boltz --ph 7.0 --workdir cache/ apo.pdb cofold.cif
+  strain.py --iters 30 --tol 500 ...     # change the declash budget
 """
 import argparse
 import os
