@@ -1,0 +1,25 @@
+Surface charge / hydrophobic patch comparison: shuffle_control
+  rf3apo = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/folds/rf3apo/shuffle_control.pdb
+  boltz = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/boltz/boltz_results_shuffle_control/predictions/shuffle_control/shuffle_control_model_0.cif
+  34 residues; exposed if rSASA > 0.25; hydrophobic if KD >= 1.5
+
+== Positive (Arg/Lys) ==
+  rf3apo: 2 exposed [LYS6, LYS27]
+  boltz: 2 exposed [LYS6, LYS27]
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Negative (Asp/Glu) ==
+  rf3apo: 2 exposed [GLU21, ASP32]
+  boltz: 2 exposed [GLU21, ASP32]
+      patch 1: GLU21-ASP32
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Hydrophobic (KD>=1.5) ==
+  rf3apo: 3 exposed [LEU8, LEU16, PHE24]
+      patch 1: LEU8-LEU16-PHE24
+  boltz: 3 exposed [LEU8, LEU16, PHE24]
+      patch 1: LEU8-PHE24
+  newly exposed in boltz: (none)
+  buried on folding:          (none)

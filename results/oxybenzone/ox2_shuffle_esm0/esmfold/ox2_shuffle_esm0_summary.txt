@@ -1,0 +1,32 @@
+Surface charge / hydrophobic patch comparison: ox2_shuffle_esm0
+  esmfold = /Users/cafierom/python_mac/peptidebuilder/runs/oxybenzone/folds/esmfold/ox2_shuffle_esm0.pdb
+  boltz = /Users/cafierom/python_mac/peptidebuilder/runs/oxybenzone/boltz/boltz_results_ox2_shuffle_esm0/predictions/ox2_shuffle_esm0/ox2_shuffle_esm0_model_0.cif
+  31 residues; exposed if rSASA > 0.25; hydrophobic if KD >= 1.5
+
+== Positive (Arg/Lys) ==
+  esmfold: 6 exposed [ARG1, LYS12, LYS20, ARG21, LYS23, LYS27]
+      patch 1: LYS20-ARG21-LYS23-LYS27
+  boltz: 6 exposed [ARG1, LYS12, LYS20, ARG21, LYS23, LYS27]
+      patch 1: LYS20-ARG21-LYS23
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Negative (Asp/Glu) ==
+  esmfold: 7 exposed [GLU3, ASP7, ASP8, GLU19, ASP25, GLU28, ASP30]
+      patch 1: ASP7-ASP8
+      patch 2: GLU28-ASP30
+  boltz: 7 exposed [GLU3, ASP7, ASP8, GLU19, ASP25, GLU28, ASP30]
+      patch 1: ASP7-ASP8
+      patch 2: GLU28-ASP30
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Hydrophobic (KD>=1.5) ==
+  esmfold: 9 exposed [LEU2, ILE5, LEU6, ALA13, ILE14, PHE17, ILE22, ILE26, PHE31]
+      patch 1: LEU2-ILE5-LEU6-ALA13-ILE14-PHE17
+      patch 2: ILE22-ILE26
+  boltz: 9 exposed [LEU2, ILE5, LEU6, ALA13, ILE14, PHE17, ILE22, ILE26, PHE31]
+      patch 1: LEU2-ILE5-LEU6-ALA13-ILE14-PHE17
+      patch 2: ILE22-ILE26
+  newly exposed in boltz: (none)
+  buried on folding:          (none)

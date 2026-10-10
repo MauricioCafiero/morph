@@ -1,0 +1,38 @@
+Surface charge / hydrophobic patch comparison: shuffle_control_esm0
+  of3apo = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/folds/of3apo/shuffle_control_esm0.pdb
+  boltz = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/boltz/boltz_results_shuffle_control_esm0/predictions/shuffle_control_esm0/shuffle_control_esm0_model_0.cif
+  34 residues; exposed if rSASA > 0.25; hydrophobic if KD >= 1.5
+
+== Positive (Arg/Lys) ==
+  of3apo: 8 exposed [LYS3, LYS6, ARG9, LYS10, LYS15, LYS19, LYS27, LYS30]
+      patch 1: LYS3-LYS6-ARG9-LYS10
+      patch 2: LYS15-LYS19
+      patch 3: LYS27-LYS30
+  boltz: 8 exposed [LYS3, LYS6, ARG9, LYS10, LYS15, LYS19, LYS27, LYS30]
+      patch 1: LYS3-LYS6-ARG9-LYS10
+      patch 2: LYS15-LYS19
+      patch 3: LYS27-LYS30
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Negative (Asp/Glu) ==
+  of3apo: 8 exposed [ASP11, ASP14, ASP18, GLU21, GLU23, GLU26, GLU31, ASP32]
+      patch 1: ASP11-ASP14-ASP18-GLU21-GLU23-GLU26
+      patch 2: GLU31-ASP32
+  boltz: 8 exposed [ASP11, ASP14, ASP18, GLU21, GLU23, GLU26, GLU31, ASP32]
+      patch 1: ASP11-ASP14-ASP18-GLU21-GLU23-GLU26
+      patch 2: GLU31-ASP32
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Hydrophobic (KD>=1.5) ==
+  of3apo: 9 exposed [ILE2, ILE5, LEU8, ILE13, LEU16, ILE17, PHE24, ILE25, LEU33]
+      patch 1: ILE2-ILE5-LEU8
+      patch 2: ILE13-LEU16-ILE17
+      patch 3: PHE24-ILE25
+  boltz: 9 exposed [ILE2, ILE5, LEU8, ILE13, LEU16, ILE17, PHE24, ILE25, LEU33]
+      patch 1: ILE2-ILE5-LEU8
+      patch 2: ILE13-LEU16-ILE17
+      patch 3: PHE24-ILE25
+  newly exposed in boltz: (none)
+  buried on folding:          (none)

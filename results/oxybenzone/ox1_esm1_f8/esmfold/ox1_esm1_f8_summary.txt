@@ -1,0 +1,27 @@
+Surface charge / hydrophobic patch comparison: ox1_esm1_f8
+  esmfold = /Users/cafierom/python_mac/peptidebuilder/runs/oxybenzone/folds/esmfold/ox1_esm1_f8.pdb
+  boltz = /Users/cafierom/python_mac/peptidebuilder/runs/oxybenzone/boltz/boltz_results_ox1_esm1_f8/predictions/ox1_esm1_f8/ox1_esm1_f8_model_0.cif
+  25 residues; exposed if rSASA > 0.25; hydrophobic if KD >= 1.5
+
+== Positive (Arg/Lys) ==
+  esmfold: 4 exposed [ARG3, LYS5, LYS7, ARG16]
+      patch 1: ARG3-LYS5-LYS7
+  boltz: 4 exposed [ARG3, LYS5, LYS7, ARG16]
+      patch 1: ARG3-LYS5
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Negative (Asp/Glu) ==
+  esmfold: 4 exposed [ASP9, GLU11, ASP18, ASP25]
+      patch 1: ASP9-GLU11
+  boltz: 3 exposed [GLU11, ASP18, ASP25]
+  newly exposed in boltz: (none)
+  buried on folding:          ASP9
+
+== Hydrophobic (KD>=1.5) ==
+  esmfold: 9 exposed [PHE1, LEU4, LEU6, ALA10, ALA12, ILE13, ALA14, LEU17, ALA22]
+      patch 1: PHE1-LEU4-LEU6-ALA10-ALA12-ILE13-ALA14-LEU17
+  boltz: 8 exposed [PHE1, LEU4, LEU6, ALA10, ILE13, ALA14, LEU17, ALA22]
+      patch 1: LEU4-LEU6-ALA10-ILE13-ALA14-LEU17
+  newly exposed in boltz: (none)
+  buried on folding:          ALA12

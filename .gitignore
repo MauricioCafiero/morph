@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+results/run.out
+results/run.log
+
+# Regenerable structure outputs — recreate with `code/run_batch.py` (~18 s).
+# The small human-readable summaries (RESULTS.md, *.csv, *_summary.txt, *_residues.csv)
+# ARE tracked; the bulky PDBs, per-job sentinels, and the morphs/ collection are not.
+results/morphs/
+results/**/*.pdb
+results/**/metrics.json

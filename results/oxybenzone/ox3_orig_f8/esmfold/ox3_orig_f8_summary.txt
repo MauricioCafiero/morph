@@ -1,0 +1,23 @@
+Surface charge / hydrophobic patch comparison: ox3_orig_f8
+  esmfold = /Users/cafierom/python_mac/peptidebuilder/runs/oxybenzone/folds/esmfold/ox3_orig_f8.pdb
+  boltz = /Users/cafierom/python_mac/peptidebuilder/runs/oxybenzone/boltz/boltz_results_ox3_orig_f8/predictions/ox3_orig_f8/ox3_orig_f8_model_0.cif
+  27 residues; exposed if rSASA > 0.25; hydrophobic if KD >= 1.5
+
+== Positive (Arg/Lys) ==
+  esmfold: 0 exposed [(none)]
+  boltz: 0 exposed [(none)]
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Negative (Asp/Glu) ==
+  esmfold: 3 exposed [ASP1, GLU4, ASP16]
+  boltz: 3 exposed [ASP1, GLU4, ASP16]
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Hydrophobic (KD>=1.5) ==
+  esmfold: 3 exposed [ILE7, PHE18, LEU22]
+  boltz: 3 exposed [ILE7, PHE18, LEU22]
+      patch 1: PHE18-LEU22
+  newly exposed in boltz: (none)
+  buried on folding:          (none)

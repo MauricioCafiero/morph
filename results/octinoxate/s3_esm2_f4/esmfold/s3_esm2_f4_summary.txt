@@ -1,0 +1,28 @@
+Surface charge / hydrophobic patch comparison: s3_esm2_f4
+  esmfold = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/folds/esmfold/s3_esm2_f4.pdb
+  boltz = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/boltz/boltz_results_s3_esm2_f4/predictions/s3_esm2_f4/s3_esm2_f4_model_0.cif
+  34 residues; exposed if rSASA > 0.25; hydrophobic if KD >= 1.5
+
+== Positive (Arg/Lys) ==
+  esmfold: 6 exposed [LYS8, LYS15, LYS16, LYS17, LYS19, LYS22]
+      patch 1: LYS15-LYS16-LYS17-LYS19-LYS22
+  boltz: 6 exposed [LYS8, LYS15, LYS16, LYS17, LYS19, LYS22]
+      patch 1: LYS15-LYS16-LYS17-LYS19-LYS22
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Negative (Asp/Glu) ==
+  esmfold: 2 exposed [ASP4, GLU27]
+  boltz: 2 exposed [ASP4, GLU27]
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Hydrophobic (KD>=1.5) ==
+  esmfold: 15 exposed [ILE2, PHE6, ILE7, ILE9, LEU12, ILE13, PHE18, ILE20, LEU21, ILE23, LEU25, LEU26, ILE28, PHE30, LEU31]
+      patch 1: PHE18-ILE20-LEU21-ILE23-LEU25-LEU26-ILE28-PHE30-LEU31
+      patch 2: ILE2-PHE6-ILE7-ILE9-LEU12-ILE13
+  boltz: 12 exposed [ILE2, ILE7, ILE9, LEU12, PHE18, ILE20, LEU21, ILE23, LEU26, ILE28, PHE30, LEU31]
+      patch 1: PHE18-ILE20-LEU21-ILE23-LEU26-ILE28-PHE30-LEU31
+      patch 2: ILE7-ILE9-LEU12
+  newly exposed in boltz: (none)
+  buried on folding:          PHE6, ILE13, LEU25
