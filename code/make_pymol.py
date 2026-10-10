@@ -52,38 +52,49 @@ def main():
         ref_lane = next(l for l in LANE_ORDER if l in lanes)
         n = n_states(os.path.join(MORPHS, lanes[ref_lane]))
         present = [l for l in LANE_ORDER if l in lanes]
+        lane_tuples = ", ".join(f'("{l}", "{LANE_COLORS[l]}", "{lanes[l]}")' for l in present)
+        # Per-frame SS can't be refreshed live on a multi-state object (dss sets one ss per
+        # atom and rebuild doesn't reliably redraw during playback). So we split each lane's
+        # trajectory into one object per frame, bake dss into each (correct for that frame's
+        # geometry), and animate by toggling visibility -- which plays reliably. The two real
+        # endpoints (frames 1 and N, the apo and bound predictions) render exactly right; the
+        # interpolated in-between frames are approximate (linear-morph geometry).
         out = [f"# {mol_pep}: apo lanes morphing into the Boltz co-fold ({n} states each).",
-               f"# Run from this folder:  pymol {mol_pep}.pml   then press the play button.",
-               "reinitialize", ""]
-        for lane in present:
-            out.append(f"load {lanes[lane]}, {lane}")
-        out.append("")
-        # overlay the lanes on their shared final (bound) state so they sit in one frame
-        for lane in present:
-            if lane != ref_lane:
-                out.append(f"align {lane}, {ref_lane}, mobile_state={n}, target_state={n}")
-        out += ["", "hide everything", "show cartoon", "set cartoon_fancy_helices, 1"]
-        for lane in present:
-            out.append(f"color {LANE_COLORS[lane]}, {lane}")
-        out += ["", "bg_color black",
-                f"mset 1 -{n}                  # map movie frames 1..{n} to morph states 1..{n}",
-                "set movie_fps, 15",
-                "set all_states, off",
-                "",
-                "# Per-frame secondary structure: recompute dss from each frame's OWN geometry as",
-                "# it plays, so helices/sheets form as the peptide folds instead of a glyph frozen",
-                f"# from one state. The two real endpoints (states 1 and {n}, the apo and bound",
-                "# predictions) therefore render exactly as standalone cartoons of those structures;",
-                "# only the interpolated in-between frames are approximate (linear-morph geometry).",
-                "python",
-                f"for _f in range(1, {n} + 1):",
-                "    cmd.mdo(_f, 'dss *, %d; rebuild' % _f)",
-                "python end",
-                "dss *, 1                     # SS for the first frame before playback starts",
-                "frame 1", "orient",
-                "mplay                        # start the morph playing",
-                f"# {len(present)} lanes: {', '.join(present)}. blue=ESMFold salmon=OF3-apo green=RF3-apo",
-                "# Prefer side-by-side panels? run:  set grid_mode, 1    then:  orient"]
+               f"# Run from this folder:  pymol {mol_pep}.pml   (it auto-plays)",
+               f"# {len(present)} lanes: blue=ESMFold  salmon=OF3-apo  green=RF3-apo",
+               "reinitialize",
+               "python",
+               "from pymol import cmd",
+               f"n = {n}",
+               f"lanes = [{lane_tuples}]        # (name, color, file); first is the alignment ref",
+               "ref = lanes[0][0]",
+               "for name, color, fn in lanes:",
+               "    cmd.load(fn, '_' + name)",
+               "for name, color, fn in lanes[1:]:          # overlay on the shared bound state",
+               "    cmd.align('_' + name, '_' + ref, mobile_state=n, target_state=n)",
+               "for name, color, fn in lanes:              # explode into per-frame objects",
+               "    cmd.split_states('_' + name, prefix=name + '_f')",
+               "    cmd.delete('_' + name)",
+               "    for i in range(1, n + 1):",
+               "        o = '%s_f%04d' % (name, i)",
+               "        cmd.dss(o)                         # SS baked from THIS frame's geometry",
+               "        cmd.hide('everything', o)",
+               "        cmd.show('cartoon', o)",
+               "        cmd.color(color, o)",
+               "        cmd.disable(o)",
+               "cmd.set('cartoon_fancy_helices', 1)",
+               "cmd.bg_color('black')",
+               "cmd.mset('1 x%d' % n)                      # n movie frames",
+               "names = [l[0] for l in lanes]",
+               "for i in range(1, n + 1):                  # frame i shows each lane's _fi object",
+               "    show = ' '.join('enable %s_f%04d' % (nm, i) for nm in names)",
+               "    cmd.mdo(i, 'disable *_f*; ' + show)",
+               "for nm in names:",
+               "    cmd.enable('%s_f0001' % nm)",
+               "cmd.frame(1)",
+               "cmd.orient()",
+               "python end",
+               "mplay"]
         pml = os.path.join(MORPHS, f"{mol_pep}.pml")
         open(pml, "w").write("\n".join(out) + "\n")
         written.append((mol_pep, sorted(lanes), pml))
