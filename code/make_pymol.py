@@ -51,29 +51,32 @@ def main():
     for mol_pep, lanes in sorted(peptides.items()):
         ref_lane = next(l for l in LANE_ORDER if l in lanes)
         n = n_states(os.path.join(MORPHS, lanes[ref_lane]))
+        present = [l for l in LANE_ORDER if l in lanes]
         out = [f"# {mol_pep}: apo lanes morphing into the Boltz co-fold ({n} states each).",
                f"# Run from this folder:  pymol {mol_pep}.pml   then press the play button.",
                "reinitialize", ""]
-        for lane in LANE_ORDER:
-            if lane in lanes:
-                out.append(f"load {lanes[lane]}, {lane}")
+        for lane in present:
+            out.append(f"load {lanes[lane]}, {lane}")
         out.append("")
-        # overlay all lanes on their shared final (bound) state, so they share one frame
-        for lane in LANE_ORDER:
-            if lane in lanes and lane != ref_lane:
+        # overlay the lanes on their shared final (bound) state so they sit in one frame
+        for lane in present:
+            if lane != ref_lane:
                 out.append(f"align {lane}, {ref_lane}, mobile_state={n}, target_state={n}")
-        out += ["", "hide everything", "show cartoon",
-                "dss                          # assign secondary structure (PDBs carry none) so",
-                "                             # helices/strands render as ribbon, not thin coil",
-                "set cartoon_transparency, 0",
-                "set cartoon_fancy_helices, 1"]
-        for lane in LANE_ORDER:
-            if lane in lanes:
-                out.append(f"color {LANE_COLORS[lane]}, {lane}")
-        out += ["", "set all_states, off          # show one movie frame at a time",
-                "bg_color black", "set ray_opaque_background, 0", "set movie_fps, 15", "orient",
-                "set scene_buttons, 1",
-                "# the three lanes share states 1..%d; drag the slider or press play to morph" % n]
+        out += ["",
+                f"# assign secondary structure from the BOUND (final, state {n}) fold, NOT the apo",
+                "# start -- an extended-coil apo would otherwise freeze every frame as coil."]
+        for lane in present:
+            out.append(f"dss {lane}, {n}")
+        out += ["", "hide everything", "show cartoon", "set cartoon_fancy_helices, 1"]
+        for lane in present:
+            out.append(f"color {LANE_COLORS[lane]}, {lane}")
+        out += ["", "bg_color black",
+                f"mset 1 -{n}                  # define the {n}-state morph as a movie",
+                "set movie_fps, 15",
+                "set all_states, off          # one state at a time (the movie steps through them)",
+                "orient", "mplay                        # start the morph playing",
+                f"# {len(present)} lanes: {', '.join(present)}. blue=ESMFold salmon=OF3-apo green=RF3-apo",
+                "# Prefer side-by-side panels? run:  set grid_mode, 1    then:  orient"]
         pml = os.path.join(MORPHS, f"{mol_pep}.pml")
         open(pml, "w").write("\n".join(out) + "\n")
         written.append((mol_pep, sorted(lanes), pml))
