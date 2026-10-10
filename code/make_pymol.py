@@ -60,7 +60,7 @@ def main():
         # endpoints (frames 1 and N, the apo and bound predictions) render exactly right; the
         # interpolated in-between frames are approximate (linear-morph geometry).
         out = [f"# {mol_pep}: apo lanes morphing into the Boltz co-fold ({n} states each).",
-               f"# Run from this folder:  pymol {mol_pep}.pml   (it auto-plays)",
+               f"# Run from this folder:  pymol {mol_pep}.pml   (opens paused; press play to morph)",
                f"# {len(present)} lanes: blue=ESMFold  salmon=OF3-apo  green=RF3-apo",
                "reinitialize",
                "python",
@@ -93,8 +93,7 @@ def main():
                "    cmd.enable('%s_f0001' % nm)",
                "cmd.frame(1)",
                "cmd.orient()",
-               "python end",
-               "mplay"]
+               "python end"]
         pml = os.path.join(MORPHS, f"{mol_pep}.pml")
         open(pml, "w").write("\n".join(out) + "\n")
         written.append((mol_pep, sorted(lanes), pml))
