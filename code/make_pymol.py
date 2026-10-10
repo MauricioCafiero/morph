@@ -62,19 +62,26 @@ def main():
         for lane in present:
             if lane != ref_lane:
                 out.append(f"align {lane}, {ref_lane}, mobile_state={n}, target_state={n}")
-        out += ["",
-                f"# assign secondary structure from the BOUND (final, state {n}) fold, NOT the apo",
-                "# start -- an extended-coil apo would otherwise freeze every frame as coil."]
-        for lane in present:
-            out.append(f"dss {lane}, {n}")
         out += ["", "hide everything", "show cartoon", "set cartoon_fancy_helices, 1"]
         for lane in present:
             out.append(f"color {LANE_COLORS[lane]}, {lane}")
         out += ["", "bg_color black",
-                f"mset 1 -{n}                  # define the {n}-state morph as a movie",
+                f"mset 1 -{n}                  # map movie frames 1..{n} to morph states 1..{n}",
                 "set movie_fps, 15",
-                "set all_states, off          # one state at a time (the movie steps through them)",
-                "orient", "mplay                        # start the morph playing",
+                "set all_states, off",
+                "",
+                "# Per-frame secondary structure: recompute dss from each frame's OWN geometry as",
+                "# it plays, so helices/sheets form as the peptide folds instead of a glyph frozen",
+                f"# from one state. The two real endpoints (states 1 and {n}, the apo and bound",
+                "# predictions) therefore render exactly as standalone cartoons of those structures;",
+                "# only the interpolated in-between frames are approximate (linear-morph geometry).",
+                "python",
+                f"for _f in range(1, {n} + 1):",
+                "    cmd.mdo(_f, 'dss *, %d; rebuild' % _f)",
+                "python end",
+                "dss *, 1                     # SS for the first frame before playback starts",
+                "frame 1", "orient",
+                "mplay                        # start the morph playing",
                 f"# {len(present)} lanes: {', '.join(present)}. blue=ESMFold salmon=OF3-apo green=RF3-apo",
                 "# Prefer side-by-side panels? run:  set grid_mode, 1    then:  orient"]
         pml = os.path.join(MORPHS, f"{mol_pep}.pml")
