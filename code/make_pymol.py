@@ -84,16 +84,23 @@ def main():
                "        cmd.disable(o)",
                "cmd.set('cartoon_fancy_helices', 1)",
                "cmd.bg_color('black')",
-               "cmd.mset('1 x%d' % n)                      # n movie frames",
+               "cmd.mset('1 x%d' % n)",
                "names = [l[0] for l in lanes]",
-               "for i in range(1, n + 1):                  # frame i shows each lane's _fi object",
-               "    show = ' '.join('enable %s_f%04d' % (nm, i) for nm in names)",
-               "    cmd.mdo(i, 'disable *_f*; ' + show)",
-               "for nm in names:",
-               "    cmd.enable('%s_f0001' % nm)",
-               "cmd.frame(1)",
-               "cmd.orient()",
-               "python end"]
+               "def lane(which=names[0]):                  # show ONE lane's morph, paused on frame 1",
+               "    which = str(which).strip()",
+               "    for i in range(1, n + 1):",
+               "        cmd.mdo(i, 'disable *_f*; enable %s_f%04d' % (which, i))",
+               "    cmd.disable('*_f*')",
+               "    cmd.enable('%s_f0001' % which)",
+               "    cmd.frame(1)",
+               "    cmd.mstop()",
+               "    cmd.orient('%s_f0001' % which)",
+               "    print('[morph] lane = %s (paused on apo). Press play to morph.' % which)",
+               "cmd.extend('lane', lane)                   # lets you type:  lane of3apo",
+               "lane(names[0])",
+               "python end",
+               f"# Opens PAUSED on the {present[0]} lane, frame 1 (apo). Press play to watch it morph.",
+               "# Switch which lane you view, at the PyMOL prompt:  lane of3apo   (or rf3apo, esmfold)"]
         pml = os.path.join(MORPHS, f"{mol_pep}.pml")
         open(pml, "w").write("\n".join(out) + "\n")
         written.append((mol_pep, sorted(lanes), pml))
