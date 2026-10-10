@@ -162,12 +162,19 @@ skipped.csv               peptides with no Boltz co-fold (BoltzGen bg33_*/bgox31
 patch-colored endpoint structures + per-job movie sit in each
 `results/<mol>/<peptide>/<lane>/` folder alongside that job's numbers.
 
-**Viewing a peptide's three lanes together.** `run_batch.py` also runs `make_pymol.py`,
-which writes one PyMOL script per peptide into `results/morphs/`. Each loads that peptide's
-ESMFold / OF3-apo / RF3-apo morphs as separate colored objects, overlaid on their shared
-bound (Boltz) state, ready to play as a synchronized movie:
+**Viewing a peptide's three lanes.** `run_batch.py` also runs `make_pymol.py`, which writes
+one PyMOL script per peptide into `results/morphs/`. Each script loads that peptide's three
+apo→co-fold movies (ESMFold / OF3-apo / RF3-apo), aligned on the shared bound state, as
+three clickable groups in the object panel — all **off** by default; click a name to show
+that lane. Secondary structure is computed **per frame** (each frame is its own object with
+its own `dss`, tucked inside the group), so helices form/melt through the morph; frame 1 is
+the apo prediction and the last frame is the Boltz co-fold. Opens paused on frame 1.
 ```sh
 cd results/morphs
-pymol octinoxate_s3_esm2_f4.pml      # press play; blue=ESMFold, salmon=OF3-apo, green=RF3-apo
+pymol octinoxate_s3_esm2_f4.pml      # click a lane, then play (mplay)
 ```
+Known issue: the GUI pause button doesn't stop playback — use `mstop` at the PyMOL prompt.
+In builds without the `suspend_undo` setting, long looping sessions slowly accumulate undo
+history from the per-frame show/hide.
+
 Regenerate the scripts alone (without rerunning analyses) with `python code/make_pymol.py`.
