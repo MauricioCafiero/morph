@@ -12,7 +12,7 @@ results, then for each (molecule, peptide, lane) writes under results/:
       <peptide>_residues.csv, <peptide>_summary.txt
   results/strain_summary.csv     one row per (mol, peptide, lane): apo/cofold E, dE
   results/patch_summary.csv      exposed pos/neg/hydrophobic spots + buried-on-fold
-  results/skipped.csv            peptides with no Boltz co-fold (e.g. BoltzGen arms)
+  results/skipped.csv            peptides with no Boltz or BoltzGen co-fold found
   results/run.log                progress
 
 Resumable: a (mol, peptide, lane) whose morph.pdb + summary already exist is skipped.
@@ -41,9 +41,25 @@ LANES = ["esmfold", "of3apo", "rf3apo"]
 RESULTS = os.path.join(REPO, "results")
 
 
+# BoltzGen peptides have no Boltz co-fold; their bound reference is BoltzGen's own design
+# co-fold (bg33_N -> octinoxate33_N.cif, bgox31_N -> oxybenzone31_N.cif), matched to the apo
+# folds by sequence. Override with MORPH_BOLTZGEN_ROOT if boltzgen_local lives elsewhere.
+BOLTZGEN_ROOT = os.environ.get("MORPH_BOLTZGEN_ROOT",
+                               os.path.expanduser("~/python_mac/boltzgen_local/results"))
+BOLTZGEN_PREFIX = {"octinoxate": ("bg33_", "octinoxate33_"), "oxybenzone": ("bgox31_", "oxybenzone31_")}
+
+
 def boltz_cif(mol, pep):
+    """Bound reference: the Boltz co-fold, or BoltzGen's co-fold for BoltzGen peptides."""
     p = f"{PEP_ROOT}/{mol}/boltz/boltz_results_{pep}/predictions/{pep}/{pep}_model_0.cif"
-    return p if os.path.exists(p) else None
+    if os.path.exists(p):
+        return p
+    pre, cif_pre = BOLTZGEN_PREFIX.get(mol, (None, None))
+    if pre and pep.startswith(pre):
+        p = f"{BOLTZGEN_ROOT}/{cif_pre}{pep[len(pre):]}.cif"
+        if os.path.exists(p):
+            return p
+    return None
 
 
 def log(msg):
@@ -65,7 +81,7 @@ def main():
         for pep in peps:
             cif = boltz_cif(mol, pep)
             if not cif:
-                skipped.append((mol, pep, "no boltz co-fold (BoltzGen arm?)"))
+                skipped.append((mol, pep, "no Boltz or BoltzGen co-fold found"))
                 continue
             for lane in LANES:
                 apo = f"{fold_dir}/{lane}/{pep}.pdb"
@@ -190,6 +206,10 @@ def write_results_md(recs, skipped):
         "atoms move <0.6 Å; see README). Negative ⇒ the bound conformation is *lower* energy",
         "than the apo fold; positive ⇒ the apo fold must strain to reach the bound state.",
         "ΔE is given for each independent apo model (ESMFold / OF3-apo / RF3-apo).", "",
+        "**Bound reference.** The Boltz co-fold for designed / variant / null peptides; for",
+        "BoltzGen peptides (kind = boltzgen: bg33_*, bgox31_*) it is BoltzGen's own design",
+        "co-fold from `boltzgen_local/results/` (matched to the apo folds by sequence). Columns",
+        "and files still say \"boltz\" for both.", "",
         "**Surface patches.** A patch is 2+ solvent-exposed residues of one type whose Cβ atoms",
         "lie within 8 Å of each other: **+** (Arg/Lys), **−** (Asp/Glu), or **hydrophobic**",
         "(Kyte–Doolittle ≥ 1.5). Isolated exposed residues are not counted. **Apo** gives the",
@@ -252,7 +272,7 @@ def write_results_md(recs, skipped):
                      f"{per_lane(lanes, bound_cell)} |")
 
     if skipped:
-        lines += ["", "## Skipped (no Boltz co-fold — BoltzGen arms)", "",
+        lines += ["", "## Skipped (no Boltz or BoltzGen co-fold found)", "",
                   ", ".join(f"{m}/{p}" for m, p, _ in skipped)]
     lines += ["", "---", "",
               "Per-peptide detail (patch residue lists, per-lane CSV, colored PDBs, morph movie)",

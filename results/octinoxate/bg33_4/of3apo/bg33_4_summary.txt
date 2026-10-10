@@ -1,0 +1,26 @@
+Surface charge / hydrophobic patch comparison: bg33_4
+  of3apo = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/folds/of3apo/bg33_4.pdb
+  boltz = /Users/cafierom/python_mac/boltzgen_local/results/octinoxate33_4.cif
+  33 residues; exposed if rSASA > 0.25; hydrophobic if KD >= 1.5
+
+== Positive (Arg/Lys) ==
+  of3apo: 1 exposed [ARG6]
+  boltz: 1 exposed [ARG6]
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Negative (Asp/Glu) ==
+  of3apo: 2 exposed [GLU25, GLU26]
+      patch 1: GLU25-GLU26
+  boltz: 2 exposed [GLU25, GLU26]
+      patch 1: GLU25-GLU26
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Hydrophobic (KD>=1.5) ==
+  of3apo: 23 exposed [ALA2, ALA3, ALA4, ALA5, ALA7, LEU8, VAL10, VAL11, LEU12, ALA14, ALA15, LEU17, ALA18, ALA19, LEU21, ILE22, ALA24, LEU28, ALA29, ALA30, ILE31, ALA32, ALA33]
+      patch 1: ALA2-ALA3-ALA4-ALA5-ALA7-LEU8-VAL10-VAL11-LEU12-ALA14-ALA15-LEU17-ALA18-ALA19-LEU21-ILE22-ALA24-LEU28-ALA29-ALA30-ILE31-ALA32-ALA33
+  boltz: 24 exposed [ALA2, ALA3, ALA4, ALA5, ALA7, LEU8, ALA9, VAL10, VAL11, LEU12, ALA14, ALA15, LEU17, ALA18, ALA19, LEU21, ILE22, ALA24, LEU28, ALA29, ALA30, ILE31, ALA32, ALA33]
+      patch 1: ALA2-ALA3-ALA4-ALA5-ALA7-LEU8-ALA9-VAL10-VAL11-LEU12-ALA14-ALA15-LEU17-ALA18-ALA19-LEU21-ILE22-ALA24-LEU28-ALA29-ALA30-ILE31-ALA32-ALA33
+  newly exposed in boltz: ALA9
+  buried on folding:          (none)
