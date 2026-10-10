@@ -195,7 +195,14 @@ def analyze(structures, tag="peptide", labels=("apo", "cofold"), outdir="patches
     if verbose:
         print("\n".join(out))
         print(f"\nwrote: {outdir}/{tag}_{{{','.join(labels)}}}.pdb, {tag}_residues.csv, {tag}_summary.txt")
+    def patch_tags(ids, coords):          # patches = 2+ adjacent exposed residues of one type
+        return [[rtag(i) for i in p] for p in find_patches(ids, coords) if len(p) >= 2]
+
     return {"n_res": n,
+            "patches": {"apo": {"pos": patch_tags(pos_a, cb_a), "neg": patch_tags(neg_a, cb_a),
+                                "hyd": patch_tags(pho_a, cb_a)},
+                        "bound": {"pos": patch_tags(pos_b, cb_b), "neg": patch_tags(neg_b, cb_b),
+                                  "hyd": patch_tags(pho_b, cb_b)}},
             "pos": [f"{names_a[i]}{rn_a[i]}" for i in pos_b],
             "neg": [f"{names_a[i]}{rn_a[i]}" for i in neg_b],
             "hydrophobic": [f"{names_a[i]}{rn_a[i]}" for i in pho_b],

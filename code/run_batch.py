@@ -119,6 +119,7 @@ def main():
                    "rmsd_apo": round(rmsd_apo, 2), "rmsd_boltz": round(rmsd_boltz, 2),
                    "note": ";".join(flags),
                    "n_pos": len(pr["pos"]), "n_neg": len(pr["neg"]), "n_hydrophobic": len(pr["hydrophobic"]),
+                   "patches": pr["patches"],
                    "pos": pr["pos"], "neg": pr["neg"], "hydrophobic": pr["hydrophobic"],
                    "buried_on_fold": pr["buried_on_fold"], "newly_exposed": pr["newly_exposed"]}
             json.dump(rec, open(metrics, "w"), indent=0)   # written last = job's done-sentinel
@@ -189,14 +190,52 @@ def write_results_md(recs, skipped):
         "atoms move <0.6 Å; see README). Negative ⇒ the bound conformation is *lower* energy",
         "than the apo fold; positive ⇒ the apo fold must strain to reach the bound state.",
         "ΔE is given for each independent apo model (ESMFold / OF3-apo / RF3-apo).", "",
-        "**Surface patches** are from static residue charge (Arg/Lys +, Asp/Glu −) and",
-        "Kyte–Doolittle hydrophobicity gated by solvent exposure. 'Charged (co-fold)' lists the",
-        "exposed charged residues in the bound state; 'Hydrophobic Δ on fold' is how many",
-        "hydrophobic residues bury (−) or newly expose (+) going apo→co-fold, per lane.", "",
+        "**Surface patches.** A patch is 2+ solvent-exposed residues of one type whose Cβ atoms",
+        "lie within 8 Å of each other: **+** (Arg/Lys), **−** (Asp/Glu), or **hydrophobic**",
+        "(Kyte–Doolittle ≥ 1.5). Isolated exposed residues are not counted. **Apo** gives the",
+        "patch counts on each apo model's surface. **Bound** says what happened to them in the",
+        "Boltz co-fold: *buried* (most of the patch's residues are no longer exposed), *still",
+        "exposed* (the patch persists), *broken up* (residues still exposed but no longer",
+        "clustered), and *new* (a patch that only exists in the bound state). The bound",
+        "structure is the same for all three lanes; the changes differ because the apo models do.", "",
         "⚠ = a `note` flag in `strain_summary.csv` (clash or heavy-atom move past guard).", "",
-        "| Mol | Peptide | Kind | ΔE esm | ΔE of3 | ΔE rf3 | Charged (co-fold) | Hydrophobic Δ on fold (esm/of3/rf3) |",
-        "|-----|---------|------|-------:|-------:|-------:|-------------------|-------------------------------------|",
+        "| Mol | Peptide | Kind | ΔE esm | ΔE of3 | ΔE rf3 | Apo (patches) | Bound (change on folding) |",
+        "|-----|---------|------|-------:|-------:|-------:|---------------|---------------------------|",
     ]
+    LABEL = {"pos": "+", "neg": "−", "hyd": "hydrophobic"}
+    SHORT = {"esmfold": "esm", "of3apo": "of3", "rf3apo": "rf3"}
+
+    def plural(k, word="patch"):
+        return f"{k} {word}" + ("es" if k != 1 else "")
+
+    def apo_cell(r):
+        a = r["patches"]["apo"]
+        return f"{len(a['pos'])} +, {len(a['neg'])} −, {len(a['hyd'])} hydrophobic"
+
+    def bound_cell(r):
+        a, b = r["patches"]["apo"], r["patches"]["bound"]
+        buried = set(r["buried_on_fold"])
+        parts = []
+        for c in ("pos", "neg", "hyd"):
+            fate = {"buried": 0, "still exposed": 0, "broken up": 0, "new": 0}
+            for p in a[c]:
+                keep = max((len(set(p) & set(q)) / len(p) for q in b[c]), default=0)
+                if keep >= 0.5:
+                    fate["still exposed"] += 1
+                elif len(set(p) & buried) / len(p) >= 0.5:
+                    fate["buried"] += 1
+                else:
+                    fate["broken up"] += 1
+            for q in b[c]:
+                if max((len(set(q) & set(p)) / len(q) for p in a[c]), default=0) < 0.5:
+                    fate["new"] += 1
+            bits = [f"{k} {v}" for v, k in fate.items() if k]
+            if bits:
+                parts.append(f"{LABEL[c]}: " + ", ".join(bits))
+        return "; ".join(parts) or "no patches"
+
+    def per_lane(lanes, fn):
+        return "<br>".join(f"**{SHORT[l]}** {fn(lanes[l])}" for l in LANES if l in lanes)
 
     def de_cell(r):
         if not r:
@@ -207,21 +246,10 @@ def write_results_md(recs, skipped):
 
     for (mol, pep) in sorted(by_pep):
         lanes = by_pep[(mol, pep)]
-        any_r = next(iter(lanes.values()))
-        pos, neg = any_r["pos"], any_r["neg"]          # co-fold exposed charges (lane-independent)
-        charged = (f"{len(pos)}+ ({','.join(pos)})" if pos else "0+") + "; " + \
-                  (f"{len(neg)}− ({','.join(neg)})" if neg else "0−")
-        hyd = []
-        for lane in LANES:
-            r = lanes.get(lane)
-            if not r:
-                hyd.append("—")
-            else:
-                nb, ne = len(r["buried_on_fold"]), len(r["newly_exposed"])
-                hyd.append(f"−{nb}/+{ne}")
         lines.append(f"| {mol} | {pep} | {kinds.get((mol, pep), '')} | "
                      f"{de_cell(lanes.get('esmfold'))} | {de_cell(lanes.get('of3apo'))} | "
-                     f"{de_cell(lanes.get('rf3apo'))} | {charged} | {' / '.join(hyd)} |")
+                     f"{de_cell(lanes.get('rf3apo'))} | {per_lane(lanes, apo_cell)} | "
+                     f"{per_lane(lanes, bound_cell)} |")
 
     if skipped:
         lines += ["", "## Skipped (no Boltz co-fold — BoltzGen arms)", "",
