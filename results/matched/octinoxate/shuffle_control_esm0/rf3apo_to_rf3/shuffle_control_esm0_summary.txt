@@ -1,0 +1,35 @@
+Surface charge / hydrophobic patch comparison: shuffle_control_esm0
+  rf3apo = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/folds/rf3apo/shuffle_control_esm0.pdb
+  rf3 = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/folds/rf3/shuffle_control_esm0.pdb
+  34 residues; exposed if rSASA > 0.25; hydrophobic if KD >= 1.5
+
+== Positive (Arg/Lys) ==
+  rf3apo: 8 exposed [LYS3, LYS6, ARG9, LYS10, LYS15, LYS19, LYS27, LYS30]
+      patch 1: LYS3-LYS6-ARG9-LYS10
+      patch 2: LYS15-LYS19
+      patch 3: LYS27-LYS30
+  rf3: 7 exposed [LYS3, LYS6, LYS10, LYS15, LYS19, LYS27, LYS30]
+      patch 1: LYS3-LYS6-LYS10
+      patch 2: LYS15-LYS19
+  newly exposed in rf3: (none)
+  buried on folding:          ARG9
+
+== Negative (Asp/Glu) ==
+  rf3apo: 8 exposed [ASP11, ASP14, ASP18, GLU21, GLU23, GLU26, GLU31, ASP32]
+      patch 1: ASP11-ASP14-ASP18-GLU21-GLU23-GLU26
+      patch 2: GLU31-ASP32
+  rf3: 7 exposed [ASP11, ASP14, ASP18, GLU21, GLU23, GLU26, GLU31]
+      patch 1: ASP11-ASP14-ASP18-GLU21-GLU23
+  newly exposed in rf3: (none)
+  buried on folding:          ASP32
+
+== Hydrophobic (KD>=1.5) ==
+  rf3apo: 9 exposed [ILE2, ILE5, LEU8, ILE13, LEU16, ILE17, PHE24, ILE25, LEU33]
+      patch 1: ILE2-ILE5-LEU8
+      patch 2: ILE13-LEU16-ILE17
+      patch 3: PHE24-ILE25
+  rf3: 7 exposed [ILE2, ILE5, LEU8, ILE17, PHE24, ILE25, LEU33]
+      patch 1: ILE2-ILE5-LEU8
+      patch 2: ILE17-PHE24-ILE25
+  newly exposed in rf3: (none)
+  buried on folding:          ILE13, LEU16

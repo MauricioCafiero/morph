@@ -1,0 +1,24 @@
+Surface charge / hydrophobic patch comparison: orig_f12
+  of3apo = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/folds/of3apo/orig_f12.pdb
+  openfold3 = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/folds/openfold3/orig_f12.pdb
+  33 residues; exposed if rSASA > 0.25; hydrophobic if KD >= 1.5
+
+== Positive (Arg/Lys) ==
+  of3apo: 3 exposed [ARG1, LYS7, LYS17]
+  openfold3: 3 exposed [ARG1, LYS7, LYS17]
+      patch 1: LYS7-LYS17
+  newly exposed in openfold3: (none)
+  buried on folding:          (none)
+
+== Negative (Asp/Glu) ==
+  of3apo: 4 exposed [ASP4, GLU21, ASP26, GLU31]
+  openfold3: 4 exposed [ASP4, GLU21, ASP26, GLU31]
+      patch 1: ASP4-GLU31
+  newly exposed in openfold3: (none)
+  buried on folding:          (none)
+
+== Hydrophobic (KD>=1.5) ==
+  of3apo: 2 exposed [LEU12, ILE19]
+  openfold3: 2 exposed [LEU12, ILE19]
+  newly exposed in openfold3: (none)
+  buried on folding:          (none)

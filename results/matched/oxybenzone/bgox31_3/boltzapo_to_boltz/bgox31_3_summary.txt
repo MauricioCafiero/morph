@@ -1,0 +1,34 @@
+Surface charge / hydrophobic patch comparison: bgox31_3
+  boltzapo = /Users/cafierom/python_mac/peptidebuilder/runs/oxybenzone/folds/boltzapo/bgox31_3.pdb
+  boltz = /Users/cafierom/python_mac/boltzgen_local/results/oxybenzone31_3.cif
+  31 residues; exposed if rSASA > 0.25; hydrophobic if KD >= 1.5
+
+== Positive (Arg/Lys) ==
+  boltzapo: 4 exposed [ARG7, ARG10, LYS27, LYS29]
+      patch 1: ARG7-ARG10
+      patch 2: LYS27-LYS29
+  boltz: 4 exposed [ARG7, ARG10, LYS27, LYS29]
+      patch 1: ARG7-ARG10
+      patch 2: LYS27-LYS29
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Negative (Asp/Glu) ==
+  boltzapo: 9 exposed [GLU2, GLU3, GLU4, GLU11, GLU14, GLU17, GLU24, GLU25, GLU28]
+      patch 1: GLU2-GLU3-GLU4
+      patch 2: GLU24-GLU25-GLU28
+      patch 3: GLU11-GLU14
+  boltz: 10 exposed [GLU2, GLU3, GLU4, GLU6, GLU11, GLU14, GLU17, GLU24, GLU25, GLU28]
+      patch 1: GLU2-GLU3-GLU4-GLU6
+      patch 2: GLU24-GLU25-GLU28
+      patch 3: GLU11-GLU14
+  newly exposed in boltz: GLU6
+  buried on folding:          (none)
+
+== Hydrophobic (KD>=1.5) ==
+  boltzapo: 6 exposed [LEU5, ALA8, LEU12, VAL13, ALA15, LEU30]
+      patch 1: LEU5-ALA8-LEU12-VAL13-ALA15-LEU30
+  boltz: 8 exposed [LEU5, ALA8, LEU12, VAL13, ALA15, ILE18, ILE26, LEU30]
+      patch 1: LEU5-ALA8-LEU12-VAL13-ALA15-ILE18-ILE26-LEU30
+  newly exposed in boltz: ILE18, ILE26
+  buried on folding:          (none)

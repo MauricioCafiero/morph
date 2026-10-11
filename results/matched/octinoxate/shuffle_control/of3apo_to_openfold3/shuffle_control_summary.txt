@@ -1,0 +1,24 @@
+Surface charge / hydrophobic patch comparison: shuffle_control
+  of3apo = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/folds/of3apo/shuffle_control.pdb
+  openfold3 = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/folds/openfold3/shuffle_control.pdb
+  34 residues; exposed if rSASA > 0.25; hydrophobic if KD >= 1.5
+
+== Positive (Arg/Lys) ==
+  of3apo: 2 exposed [LYS6, LYS27]
+  openfold3: 2 exposed [LYS6, LYS27]
+  newly exposed in openfold3: (none)
+  buried on folding:          (none)
+
+== Negative (Asp/Glu) ==
+  of3apo: 2 exposed [GLU21, ASP32]
+      patch 1: GLU21-ASP32
+  openfold3: 1 exposed [GLU21]
+  newly exposed in openfold3: (none)
+  buried on folding:          ASP32
+
+== Hydrophobic (KD>=1.5) ==
+  of3apo: 3 exposed [LEU8, LEU16, PHE24]
+  openfold3: 3 exposed [LEU8, LEU16, PHE24]
+      patch 1: LEU8-LEU16-PHE24
+  newly exposed in openfold3: (none)
+  buried on folding:          (none)

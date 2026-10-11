@@ -1,0 +1,24 @@
+Surface charge / hydrophobic patch comparison: bg33_2
+  boltzapo = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/folds/boltzapo/bg33_2.pdb
+  boltz = /Users/cafierom/python_mac/boltzgen_local/results/octinoxate33_2.cif
+  33 residues; exposed if rSASA > 0.25; hydrophobic if KD >= 1.5
+
+== Positive (Arg/Lys) ==
+  boltzapo: 0 exposed [(none)]
+  boltz: 0 exposed [(none)]
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Negative (Asp/Glu) ==
+  boltzapo: 0 exposed [(none)]
+  boltz: 0 exposed [(none)]
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Hydrophobic (KD>=1.5) ==
+  boltzapo: 32 exposed [ALA2, ALA3, ALA4, ALA5, ALA6, ALA7, ALA8, ILE9, ALA10, ALA11, ALA12, ALA13, ALA14, ALA15, ALA16, ALA17, ALA18, ALA19, ALA20, ALA21, ALA22, ALA23, ALA24, ALA25, ALA26, ALA27, ALA28, ALA29, ALA30, LEU31, ALA32, ALA33]
+      patch 1: ALA2-ALA3-ALA4-ALA5-ALA6-ALA7-ALA8-ILE9-ALA10-ALA11-ALA12-ALA13-ALA14-ALA15-ALA16-ALA17-ALA18-ALA19-ALA20-ALA21-ALA22-ALA23-ALA24-ALA25-ALA26-ALA27-ALA28-ALA29-ALA30-LEU31-ALA32-ALA33
+  boltz: 32 exposed [ALA2, ALA3, ALA4, ALA5, ALA6, ALA7, ALA8, ILE9, ALA10, ALA11, ALA12, ALA13, ALA14, ALA15, ALA16, ALA17, ALA18, ALA19, ALA20, ALA21, ALA22, ALA23, ALA24, ALA25, ALA26, ALA27, ALA28, ALA29, ALA30, LEU31, ALA32, ALA33]
+      patch 1: ALA2-ALA3-ALA4-ALA5-ALA6-ALA7-ALA8-ILE9-ALA10-ALA11-ALA12-ALA13-ALA14-ALA15-ALA16-ALA17-ALA18-ALA19-ALA20-ALA21-ALA22-ALA23-ALA24-ALA25-ALA26-ALA27-ALA28-ALA29-ALA30-LEU31-ALA32-ALA33
+  newly exposed in boltz: (none)
+  buried on folding:          (none)

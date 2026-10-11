@@ -1,0 +1,31 @@
+Surface charge / hydrophobic patch comparison: ox2_esm1_f8
+  of3apo = /Users/cafierom/python_mac/peptidebuilder/runs/oxybenzone/folds/of3apo/ox2_esm1_f8.pdb
+  openfold3 = /Users/cafierom/python_mac/peptidebuilder/runs/oxybenzone/folds/openfold3/ox2_esm1_f8.pdb
+  31 residues; exposed if rSASA > 0.25; hydrophobic if KD >= 1.5
+
+== Positive (Arg/Lys) ==
+  of3apo: 2 exposed [ARG6, LYS11]
+  openfold3: 2 exposed [ARG6, LYS11]
+  newly exposed in openfold3: (none)
+  buried on folding:          (none)
+
+== Negative (Asp/Glu) ==
+  of3apo: 6 exposed [ASP3, ASP15, GLU16, ASP27, ASP28, ASP30]
+      patch 1: ASP15-GLU16
+      patch 2: ASP27-ASP28
+  openfold3: 6 exposed [ASP3, ASP15, GLU16, ASP27, ASP28, ASP30]
+      patch 1: ASP15-GLU16
+      patch 2: ASP27-ASP28
+  newly exposed in openfold3: (none)
+  buried on folding:          (none)
+
+== Hydrophobic (KD>=1.5) ==
+  of3apo: 11 exposed [PHE8, ALA9, VAL10, ALA12, ALA13, ILE18, ALA19, ALA20, LEU22, LEU26, PHE29]
+      patch 1: PHE8-ALA9-VAL10-ALA12-ALA13
+      patch 2: ILE18-ALA19-ALA20-LEU22
+      patch 3: LEU26-PHE29
+  openfold3: 10 exposed [PHE8, ALA9, VAL10, ALA12, ALA13, ILE18, ALA19, ALA20, LEU22, LEU26]
+      patch 1: PHE8-ALA9-VAL10-ALA12-ALA13
+      patch 2: ILE18-ALA19-ALA20-LEU22
+  newly exposed in openfold3: (none)
+  buried on folding:          PHE29

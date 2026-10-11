@@ -1,0 +1,130 @@
+[19:32:22] set=matched: 63 (mol,peptide,pair) jobs; 0 pairs skipped
+[19:32:23] ok   1/63 octinoxate/bg33_1/boltzapo->boltz  dE=+19.4 kcal/mol  buried=0
+[19:32:23] ok   2/63 octinoxate/bg33_1/of3apo->openfold3  dE=+1.8 kcal/mol  buried=0
+[19:32:24] ok   3/63 octinoxate/bg33_1/rf3apo->rf3  dE=-17.4 kcal/mol  buried=0
+[19:32:25] ok   4/63 octinoxate/bg33_2/boltzapo->boltz  dE=+32.6 kcal/mol  buried=0
+[19:32:25] ok   5/63 octinoxate/bg33_2/of3apo->openfold3  dE=-79.3 kcal/mol  buried=0
+[19:32:26] ok   6/63 octinoxate/bg33_2/rf3apo->rf3  dE=-15.5 kcal/mol  buried=0
+[19:32:27] ok   7/63 octinoxate/bg33_3/boltzapo->boltz  dE=+15.1 kcal/mol  buried=0
+[19:32:27] ok   8/63 octinoxate/bg33_3/of3apo->openfold3  dE=+22.0 kcal/mol  buried=1
+[19:32:28] ok   9/63 octinoxate/bg33_3/rf3apo->rf3  dE=-47.8 kcal/mol  buried=1
+[19:32:29] ok   10/63 octinoxate/bg33_4/boltzapo->boltz  dE=+30.3 kcal/mol  buried=0
+[19:32:30] ok   11/63 octinoxate/bg33_4/of3apo->openfold3  dE=+350.0 kcal/mol  buried=0
+[19:32:30] ok   12/63 octinoxate/bg33_4/rf3apo->rf3  dE=-25.0 kcal/mol  buried=0
+[19:32:31] ok   13/63 octinoxate/orig_f12/boltzapo->boltz  dE=+111.4 kcal/mol  buried=5
+[19:32:32] ok   14/63 octinoxate/orig_f12/of3apo->openfold3  dE=-22.4 kcal/mol  buried=6
+[19:32:33] ok   15/63 octinoxate/orig_f12/rf3apo->rf3  dE=-57.2 kcal/mol  buried=3
+[19:32:34] ok   16/63 octinoxate/s2_esm2_control/boltzapo->boltz  dE=-57.8 kcal/mol  buried=0
+[19:32:35] ok   17/63 octinoxate/s2_esm2_control/of3apo->openfold3  dE=+5.2 kcal/mol  buried=0
+[19:32:36] ok   18/63 octinoxate/s2_esm2_control/rf3apo->rf3  dE=+60.2 kcal/mol  buried=8
+[19:32:37] ok   19/63 octinoxate/s3_esm2_f4/boltzapo->boltz  dE=+18.5 kcal/mol  buried=5
+[19:32:38] ok   20/63 octinoxate/s3_esm2_f4/of3apo->openfold3  dE=+31.8 kcal/mol  buried=1
+[19:32:39] ok   21/63 octinoxate/s3_esm2_f4/rf3apo->rf3  dE=-35.8 kcal/mol  buried=0
+[19:32:40] ok   22/63 octinoxate/s3_orig_f12/boltzapo->boltz  dE=+149.3 kcal/mol  buried=4
+[19:32:41] ok   23/63 octinoxate/s3_orig_f12/of3apo->openfold3  dE=-37.2 kcal/mol  buried=5
+[19:32:42] ok   24/63 octinoxate/s3_orig_f12/rf3apo->rf3  dE=-89.7 kcal/mol  buried=9
+[19:32:42] ok   25/63 octinoxate/shuffle_control/boltzapo->boltz  dE=+173.9 kcal/mol  buried=6
+[19:32:43] ok   26/63 octinoxate/shuffle_control/of3apo->openfold3  dE=-54.9 kcal/mol  buried=4
+[19:32:44] ok   27/63 octinoxate/shuffle_control/rf3apo->rf3  dE=-25.7 kcal/mol  buried=8
+[19:32:46] ok   28/63 octinoxate/shuffle_control_esm0/boltzapo->boltz  dE=-1783.1 kcal/mol  buried=0
+[19:32:47] ok   29/63 octinoxate/shuffle_control_esm0/of3apo->openfold3  dE=+107.8 kcal/mol  buried=1
+[19:32:49] ok   30/63 octinoxate/shuffle_control_esm0/rf3apo->rf3  dE=+1892.3 kcal/mol  buried=5
+[19:32:49] ok   31/63 oxybenzone/bgox31_2/boltzapo->boltz  dE=-46.9 kcal/mol  buried=0
+[19:32:50] ok   32/63 oxybenzone/bgox31_2/of3apo->openfold3  dE=-2.7 kcal/mol  buried=0
+[19:32:51] ok   33/63 oxybenzone/bgox31_2/rf3apo->rf3  dE=-13.4 kcal/mol  buried=0
+[19:32:52] ok   34/63 oxybenzone/bgox31_3/boltzapo->boltz  dE=+105.6 kcal/mol  buried=0
+[19:32:52] ok   35/63 oxybenzone/bgox31_3/of3apo->openfold3  dE=-61.1 kcal/mol  buried=0
+[19:32:53] ok   36/63 oxybenzone/bgox31_3/rf3apo->rf3  dE=+5.3 kcal/mol  buried=0
+[19:32:54] ok   37/63 oxybenzone/bgox31_4/boltzapo->boltz  dE=+80.2 kcal/mol  buried=0
+[19:32:55] ok   38/63 oxybenzone/bgox31_4/of3apo->openfold3  dE=+50.1 kcal/mol  buried=0
+[19:32:56] ok   39/63 oxybenzone/bgox31_4/rf3apo->rf3  dE=+77.5 kcal/mol  buried=0
+[19:32:57] ok   40/63 oxybenzone/bgox31_5/boltzapo->boltz  dE=-61.7 kcal/mol  buried=0
+[19:32:58] ok   41/63 oxybenzone/bgox31_5/of3apo->openfold3  dE=-1.0 kcal/mol  buried=0
+[19:32:59] ok   42/63 oxybenzone/bgox31_5/rf3apo->rf3  dE=-18.8 kcal/mol  buried=1
+[19:33:00] ok   43/63 oxybenzone/ox1_esm1_f8/boltzapo->boltz  dE=-9.5 kcal/mol  buried=2
+[19:33:00] ok   44/63 oxybenzone/ox1_esm1_f8/of3apo->openfold3  dE=+37.6 kcal/mol  buried=3
+[19:33:01] ok   45/63 oxybenzone/ox1_esm1_f8/rf3apo->rf3  dE=-2.7 kcal/mol  buried=2
+[19:33:02] ok   46/63 oxybenzone/ox1_orig_f12/boltzapo->boltz  dE=-24.7 kcal/mol  buried=2
+[19:33:02] ok   47/63 oxybenzone/ox1_orig_f12/of3apo->openfold3  dE=+20.8 kcal/mol  buried=2
+[19:33:03] ok   48/63 oxybenzone/ox1_orig_f12/rf3apo->rf3  dE=+18.7 kcal/mol  buried=2
+[19:33:04] ok   49/63 oxybenzone/ox2_esm1_f8/boltzapo->boltz  dE=+25.7 kcal/mol  buried=2
+[19:33:04] ok   50/63 oxybenzone/ox2_esm1_f8/of3apo->openfold3  dE=+24.8 kcal/mol  buried=1
+[19:33:05] ok   51/63 oxybenzone/ox2_esm1_f8/rf3apo->rf3  dE=+136.5 kcal/mol  buried=2
+[19:33:06] ok   52/63 oxybenzone/ox2_orig_f8/boltzapo->boltz  dE=-12.0 kcal/mol  buried=5
+[19:33:07] ok   53/63 oxybenzone/ox2_orig_f8/of3apo->openfold3  dE=+10.6 kcal/mol  buried=5
+[19:33:07] ok   54/63 oxybenzone/ox2_orig_f8/rf3apo->rf3  dE=-35.3 kcal/mol  buried=8
+[19:33:08] ok   55/63 oxybenzone/ox2_shuffle/boltzapo->boltz  dE=+86.6 kcal/mol  buried=10
+[19:33:08] ok   56/63 oxybenzone/ox2_shuffle/of3apo->openfold3  dE=-57.7 kcal/mol  buried=2
+[19:33:09] ok   57/63 oxybenzone/ox2_shuffle/rf3apo->rf3  dE=-68.8 kcal/mol  buried=3
+[19:33:10] ok   58/63 oxybenzone/ox2_shuffle_esm0/boltzapo->boltz  dE=+25.1 kcal/mol  buried=1
+[19:33:11] ok   59/63 oxybenzone/ox2_shuffle_esm0/of3apo->openfold3  dE=-57.9 kcal/mol  buried=0
+[19:33:12] ok   60/63 oxybenzone/ox2_shuffle_esm0/rf3apo->rf3  dE=+125.2 kcal/mol  buried=5
+[19:33:13] ok   61/63 oxybenzone/ox3_orig_f8/boltzapo->boltz  dE=+70.2 kcal/mol  buried=3
+[19:33:14] ok   62/63 oxybenzone/ox3_orig_f8/of3apo->openfold3  dE=-198.7 kcal/mol  buried=5
+[19:33:14] ok   63/63 oxybenzone/ox3_orig_f8/rf3apo->rf3  dE=-5.0 kcal/mol  buried=3
+[19:33:14] DONE: 63 analyses this run; 63 total in results; skipped 0 peptides (no co-fold)
+[19:34:09] set=matched: 63 (mol,peptide,pair) jobs; 0 pairs skipped
+[19:34:09] skip (done) 1/63 octinoxate/bg33_1/boltzapo->boltz
+[19:34:09] skip (done) 2/63 octinoxate/bg33_1/of3apo->openfold3
+[19:34:09] skip (done) 3/63 octinoxate/bg33_1/rf3apo->rf3
+[19:34:09] skip (done) 4/63 octinoxate/bg33_2/boltzapo->boltz
+[19:34:09] skip (done) 5/63 octinoxate/bg33_2/of3apo->openfold3
+[19:34:09] skip (done) 6/63 octinoxate/bg33_2/rf3apo->rf3
+[19:34:09] skip (done) 7/63 octinoxate/bg33_3/boltzapo->boltz
+[19:34:09] skip (done) 8/63 octinoxate/bg33_3/of3apo->openfold3
+[19:34:09] skip (done) 9/63 octinoxate/bg33_3/rf3apo->rf3
+[19:34:09] skip (done) 10/63 octinoxate/bg33_4/boltzapo->boltz
+[19:34:09] skip (done) 11/63 octinoxate/bg33_4/of3apo->openfold3
+[19:34:09] skip (done) 12/63 octinoxate/bg33_4/rf3apo->rf3
+[19:34:09] skip (done) 13/63 octinoxate/orig_f12/boltzapo->boltz
+[19:34:09] skip (done) 14/63 octinoxate/orig_f12/of3apo->openfold3
+[19:34:09] skip (done) 15/63 octinoxate/orig_f12/rf3apo->rf3
+[19:34:09] skip (done) 16/63 octinoxate/s2_esm2_control/boltzapo->boltz
+[19:34:09] skip (done) 17/63 octinoxate/s2_esm2_control/of3apo->openfold3
+[19:34:09] skip (done) 18/63 octinoxate/s2_esm2_control/rf3apo->rf3
+[19:34:09] skip (done) 19/63 octinoxate/s3_esm2_f4/boltzapo->boltz
+[19:34:09] skip (done) 20/63 octinoxate/s3_esm2_f4/of3apo->openfold3
+[19:34:09] skip (done) 21/63 octinoxate/s3_esm2_f4/rf3apo->rf3
+[19:34:09] skip (done) 22/63 octinoxate/s3_orig_f12/boltzapo->boltz
+[19:34:09] skip (done) 23/63 octinoxate/s3_orig_f12/of3apo->openfold3
+[19:34:09] skip (done) 24/63 octinoxate/s3_orig_f12/rf3apo->rf3
+[19:34:09] skip (done) 25/63 octinoxate/shuffle_control/boltzapo->boltz
+[19:34:09] skip (done) 26/63 octinoxate/shuffle_control/of3apo->openfold3
+[19:34:09] skip (done) 27/63 octinoxate/shuffle_control/rf3apo->rf3
+[19:34:09] skip (done) 28/63 octinoxate/shuffle_control_esm0/boltzapo->boltz
+[19:34:09] skip (done) 29/63 octinoxate/shuffle_control_esm0/of3apo->openfold3
+[19:34:09] skip (done) 30/63 octinoxate/shuffle_control_esm0/rf3apo->rf3
+[19:34:09] skip (done) 31/63 oxybenzone/bgox31_2/boltzapo->boltz
+[19:34:09] skip (done) 32/63 oxybenzone/bgox31_2/of3apo->openfold3
+[19:34:09] skip (done) 33/63 oxybenzone/bgox31_2/rf3apo->rf3
+[19:34:09] skip (done) 34/63 oxybenzone/bgox31_3/boltzapo->boltz
+[19:34:09] skip (done) 35/63 oxybenzone/bgox31_3/of3apo->openfold3
+[19:34:09] skip (done) 36/63 oxybenzone/bgox31_3/rf3apo->rf3
+[19:34:09] skip (done) 37/63 oxybenzone/bgox31_4/boltzapo->boltz
+[19:34:09] skip (done) 38/63 oxybenzone/bgox31_4/of3apo->openfold3
+[19:34:09] skip (done) 39/63 oxybenzone/bgox31_4/rf3apo->rf3
+[19:34:09] skip (done) 40/63 oxybenzone/bgox31_5/boltzapo->boltz
+[19:34:09] skip (done) 41/63 oxybenzone/bgox31_5/of3apo->openfold3
+[19:34:09] skip (done) 42/63 oxybenzone/bgox31_5/rf3apo->rf3
+[19:34:09] skip (done) 43/63 oxybenzone/ox1_esm1_f8/boltzapo->boltz
+[19:34:09] skip (done) 44/63 oxybenzone/ox1_esm1_f8/of3apo->openfold3
+[19:34:09] skip (done) 45/63 oxybenzone/ox1_esm1_f8/rf3apo->rf3
+[19:34:09] skip (done) 46/63 oxybenzone/ox1_orig_f12/boltzapo->boltz
+[19:34:09] skip (done) 47/63 oxybenzone/ox1_orig_f12/of3apo->openfold3
+[19:34:09] skip (done) 48/63 oxybenzone/ox1_orig_f12/rf3apo->rf3
+[19:34:09] skip (done) 49/63 oxybenzone/ox2_esm1_f8/boltzapo->boltz
+[19:34:09] skip (done) 50/63 oxybenzone/ox2_esm1_f8/of3apo->openfold3
+[19:34:09] skip (done) 51/63 oxybenzone/ox2_esm1_f8/rf3apo->rf3
+[19:34:09] skip (done) 52/63 oxybenzone/ox2_orig_f8/boltzapo->boltz
+[19:34:09] skip (done) 53/63 oxybenzone/ox2_orig_f8/of3apo->openfold3
+[19:34:09] skip (done) 54/63 oxybenzone/ox2_orig_f8/rf3apo->rf3
+[19:34:09] skip (done) 55/63 oxybenzone/ox2_shuffle/boltzapo->boltz
+[19:34:09] skip (done) 56/63 oxybenzone/ox2_shuffle/of3apo->openfold3
+[19:34:09] skip (done) 57/63 oxybenzone/ox2_shuffle/rf3apo->rf3
+[19:34:09] skip (done) 58/63 oxybenzone/ox2_shuffle_esm0/boltzapo->boltz
+[19:34:09] skip (done) 59/63 oxybenzone/ox2_shuffle_esm0/of3apo->openfold3
+[19:34:09] skip (done) 60/63 oxybenzone/ox2_shuffle_esm0/rf3apo->rf3
+[19:34:09] skip (done) 61/63 oxybenzone/ox3_orig_f8/boltzapo->boltz
+[19:34:09] skip (done) 62/63 oxybenzone/ox3_orig_f8/of3apo->openfold3
+[19:34:09] skip (done) 63/63 oxybenzone/ox3_orig_f8/rf3apo->rf3
+[19:34:09] DONE: 0 analyses this run; 63 total in results; skipped 0 peptides (no co-fold)

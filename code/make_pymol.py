@@ -31,10 +31,16 @@ import os
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-MORPHS = os.path.join(os.path.dirname(HERE), "results", "morphs")
+# The morphs directory of ONE result set. run_batch passes its own via main(morphs=...);
+# MORPH_MORPHS_DIR overrides it for a standalone run. Defaults to the legacy set.
+MORPHS = os.environ.get("MORPH_MORPHS_DIR",
+                        os.path.join(os.path.dirname(HERE), "results", "morphs"))
 
-LANE_COLORS = {"esmfold": "skyblue", "of3apo": "salmon", "rf3apo": "palegreen"}
-LANE_ORDER = ["esmfold", "of3apo", "rf3apo"]
+LANE_COLORS = {"esmfold": "skyblue", "of3apo": "salmon", "rf3apo": "palegreen",
+               "boltzapo": "wheat"}
+LANE_ORDER = ["esmfold", "of3apo", "rf3apo", "boltzapo"]
+# bound lanes a morph file can end in: <mol>_<pep>_<apo lane>_to_<bound lane>.pdb
+BOUND_LANES = ["boltz", "openfold3", "rf3"]
 
 
 def n_states(pdb_path):
@@ -42,17 +48,25 @@ def n_states(pdb_path):
         return sum(1 for line in fh if line.startswith("MODEL"))
 
 
-def main():
-    """Write results/morphs/<mol>_<peptide>.pml for every peptide with morphs there."""
+def main(morphs=None, pairs=None):
+    """Write <morphs>/<mol>_<peptide>.pml for every peptide with morphs there.
+
+    `morphs` is one set's morphs directory (default: the module-level MORPHS, i.e. the legacy
+    set) and `pairs` the (apo, bound) pairs that set holds, used to find each job directory
+    for the patch viewers. Writing is confined to the directory passed, so running one set
+    never rewrites another's scripts."""
+    MORPHS = morphs or globals()["MORPHS"]
+    pairs = pairs or [(l, "boltz") for l in ("esmfold", "of3apo", "rf3apo")]
     if not os.path.isdir(MORPHS):
         sys.exit(f"no morphs folder at {MORPHS} — run code/run_batch.py first")
 
-    # group morph files by (mol, peptide) -> {lane: filename}
+    # group morph files by (mol, peptide) -> {apo lane: filename}, over any bound lane
     peptides = {}
     for fn in sorted(os.listdir(MORPHS)):
-        if not fn.endswith("_to_boltz.pdb"):
+        hit = next((b for b in BOUND_LANES if fn.endswith(f"_to_{b}.pdb")), None)
+        if not hit:
             continue
-        stem = fn[:-len("_to_boltz.pdb")]
+        stem = fn[:-len(f"_to_{hit}.pdb")]
         for lane in LANE_ORDER:
             if stem.endswith("_" + lane):
                 mol_pep = stem[:-(len(lane) + 1)]
@@ -60,7 +74,7 @@ def main():
                 break
 
     if not peptides:
-        sys.exit(f"no '*_to_boltz.pdb' morphs found in {MORPHS}")
+        sys.exit(f"no '*_to_<bound>.pdb' morphs found in {MORPHS}")
 
     written = []
     for mol_pep, lanes in sorted(peptides.items()):
@@ -143,11 +157,13 @@ def main():
             pep_dir = os.path.join(mol_dir, pep)
             if not os.path.isdir(pep_dir):
                 continue
-            for lane in LANE_ORDER:
-                lane_dir = os.path.join(pep_dir, lane)
-                if os.path.isfile(os.path.join(lane_dir, f"{pep}_{lane}.pdb")):
-                    sp.write_patch_pml(pep, [lane, "boltz"], lane_dir)
-                    n_patches += 1
+            for lane, bound in pairs:
+                # legacy job dirs are named by the apo lane; matched ones by both ends
+                for dirname in (lane, f"{lane}_to_{bound}"):
+                    lane_dir = os.path.join(pep_dir, dirname)
+                    if os.path.isfile(os.path.join(lane_dir, f"{pep}_{lane}.pdb")):
+                        sp.write_patch_pml(pep, [lane, bound], lane_dir)
+                        n_patches += 1
     if n_patches:
         print(f"wrote {n_patches} patch viewer scripts into results/<mol>/<pep>/<lane>/")
     for mol_pep, lanes, _ in written:

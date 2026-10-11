@@ -1,0 +1,22 @@
+Surface charge / hydrophobic patch comparison: ox1_orig_f12
+  of3apo = /Users/cafierom/python_mac/peptidebuilder/runs/oxybenzone/folds/of3apo/ox1_orig_f12.pdb
+  openfold3 = /Users/cafierom/python_mac/peptidebuilder/runs/oxybenzone/folds/openfold3/ox1_orig_f12.pdb
+  25 residues; exposed if rSASA > 0.25; hydrophobic if KD >= 1.5
+
+== Positive (Arg/Lys) ==
+  of3apo: 2 exposed [ARG3, LYS5]
+  openfold3: 2 exposed [ARG3, LYS5]
+  newly exposed in openfold3: (none)
+  buried on folding:          (none)
+
+== Negative (Asp/Glu) ==
+  of3apo: 3 exposed [ASP9, GLU11, ASP25]
+  openfold3: 3 exposed [ASP9, GLU11, ASP25]
+  newly exposed in openfold3: (none)
+  buried on folding:          (none)
+
+== Hydrophobic (KD>=1.5) ==
+  of3apo: 3 exposed [PHE1, ILE13, LEU17]
+  openfold3: 3 exposed [PHE1, ILE13, LEU17]
+  newly exposed in openfold3: (none)
+  buried on folding:          (none)

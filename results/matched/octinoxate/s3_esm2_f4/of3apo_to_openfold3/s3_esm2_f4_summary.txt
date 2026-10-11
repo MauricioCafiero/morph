@@ -1,0 +1,28 @@
+Surface charge / hydrophobic patch comparison: s3_esm2_f4
+  of3apo = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/folds/of3apo/s3_esm2_f4.pdb
+  openfold3 = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/folds/openfold3/s3_esm2_f4.pdb
+  34 residues; exposed if rSASA > 0.25; hydrophobic if KD >= 1.5
+
+== Positive (Arg/Lys) ==
+  of3apo: 6 exposed [LYS8, LYS15, LYS16, LYS17, LYS19, LYS22]
+      patch 1: LYS15-LYS16-LYS17-LYS19-LYS22
+  openfold3: 6 exposed [LYS8, LYS15, LYS16, LYS17, LYS19, LYS22]
+      patch 1: LYS15-LYS16-LYS17-LYS19-LYS22
+  newly exposed in openfold3: (none)
+  buried on folding:          (none)
+
+== Negative (Asp/Glu) ==
+  of3apo: 2 exposed [ASP4, GLU27]
+  openfold3: 2 exposed [ASP4, GLU27]
+  newly exposed in openfold3: (none)
+  buried on folding:          (none)
+
+== Hydrophobic (KD>=1.5) ==
+  of3apo: 15 exposed [ILE2, PHE6, ILE7, ILE9, LEU12, ILE13, PHE18, ILE20, LEU21, ILE23, LEU25, LEU26, ILE28, PHE30, LEU31]
+      patch 1: PHE18-ILE20-LEU21-ILE23-LEU25-LEU26-ILE28-PHE30-LEU31
+      patch 2: ILE2-PHE6-ILE7-ILE9-LEU12-ILE13
+  openfold3: 14 exposed [ILE2, PHE6, ILE7, ILE9, LEU12, ILE13, PHE18, ILE20, LEU21, ILE23, LEU25, LEU26, PHE30, LEU31]
+      patch 1: PHE18-ILE20-LEU21-ILE23-LEU25-LEU26-PHE30-LEU31
+      patch 2: ILE2-PHE6-ILE7-ILE9-LEU12-ILE13
+  newly exposed in openfold3: (none)
+  buried on folding:          ILE28

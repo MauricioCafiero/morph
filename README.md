@@ -1,8 +1,7 @@
 # morph — apo → co-fold peptide analysis
 
-For each designed peptide, compare three independent **apo** predictions (ESMFold, OpenFold3
-apo, RoseTTAFold3 apo) with the peptide's **bound** structure from a co-fold with its ligand,
-and produce:
+For each designed peptide, compare an **apo** prediction with the peptide's **bound** structure
+from a co-fold with its ligand, and produce:
 
 1. **Morph movies** — apo → bound trajectories you can play in PyMOL, with secondary structure
    computed per frame.
@@ -11,7 +10,26 @@ and produce:
 3. **Surface patches** — charged (+/−) and hydrophobic patches on the apo surface, and whether
    they are buried, persist, break up, or newly form in the bound state.
 
-Everything is summarized one row per peptide in `results/RESULTS.md`. Strain is meant as a
+There are two sets of pairs, selected with `--set`:
+
+| set | pairs | output | what a ΔE means |
+|---|---|---|---|
+| `legacy` (default) | ESMFold, OF3-apo, RF3-apo → **the Boltz co-fold** | `results/` | mixes two effects: the ligand's, and the change of model between the apo and bound ends |
+| `matched` | Boltz-apo → Boltz, OF3-apo → OF3, RF3-apo → RF3 | `results/matched/` | the ligand's effect **within one model** |
+
+The legacy set came first, when no Boltz apo fold existed: all three apo lanes were morphed to
+the single Boltz co-fold, so an apo fold from one model was compared against a bound fold from
+another. Every co-folder now has its own apo lane (Boltz apo added 2026-10-11), so the matched
+set pairs each apo fold with its own model's co-fold and the difference is attributable to the
+ligand. Both sets are kept: the legacy one is the only place ESMFold appears, having no co-fold
+of its own, and its three-apo-lanes-one-bound-structure layout is still the right comparison
+for "how much do independent apo models differ about the same bound state".
+
+In the matched set's Boltz column, BoltzGen peptides (`bg33_*`, `bgox31_*`) keep BoltzGen's own
+design co-fold as the bound reference, there being no Boltz co-fold for those sequences — so
+that column is model-matched for 13 of 21 peptides and BoltzGen-bound for the other 8.
+
+Each set is summarized one row per peptide in its own `RESULTS.md`. Strain is meant as a
 qualitative cross-check on the binding energetics computed elsewhere (MM/GBSA in
 `peptidebuilder`, absolute binding free energy in `fep`), not as a binding energy itself.
 
@@ -27,7 +45,8 @@ with two environment variables:
 
 | What | Layout relative to its root | Root variable |
 |---|---|---|
-| Apo folds, one PDB per peptide per lane | `<mol>/folds/{esmfold,of3apo,rf3apo}/<peptide>.pdb` | `MORPH_PEP_ROOT` (default `<home>/<project>/runs`) |
+| Apo folds, one PDB per peptide per lane | `<mol>/folds/{esmfold,of3apo,rf3apo,boltzapo}/<peptide>.pdb` | `MORPH_PEP_ROOT` (default `<home>/<project>/runs`) |
+| Co-fold lanes for the matched set | `<mol>/folds/{openfold3,rf3}/<peptide>.pdb` (ligand on chain Z / B, dropped) | same |
 | Boltz co-folds (designed / variant / null peptides) | `<mol>/boltz/boltz_results_<peptide>/predictions/<peptide>/<peptide>_model_0.cif` | same |
 | BoltzGen co-folds (`bg33_N`, `bgox31_N`) | `<name>_N.cif` in a flat result directory | `MORPH_BOLTZGEN_ROOT` |
 | Peptide "kind" for the results table | `<mol>/folds/manifest.csv` | — |
@@ -52,12 +71,16 @@ PY=<path-to-env>/bin/python
 
 ```sh
 cd <repo root>
-$PY code/run_batch.py
+$PY code/run_batch.py                  # legacy set -> results/
+$PY code/run_batch.py --set matched    # matched set -> results/matched/
 ```
-This runs all 21 peptides × 3 apo lanes (63 jobs, about 1–2 minutes), then writes the
-summary tables, `RESULTS.md`, and one PyMOL script per peptide. It is resumable: each job
-writes `metrics.json` last, and jobs that already have one are skipped. To force a full
-recompute, delete the `metrics.json` files. For long runs, `code/run_batch.sh` launches it
+Each set is 21 peptides × 3 pairs (63 jobs, about 1–2 minutes), then writes the summary
+tables, `RESULTS.md`, and one PyMOL script per peptide. It is resumable: each job writes
+`metrics.json` last, and jobs that already have one are skipped. To force a full recompute,
+delete the `metrics.json` files. **A set only ever writes inside its own output directory** —
+including the PyMOL scripts, which `make_pymol` writes to the morphs directory it is handed —
+so running one set cannot overwrite another's results. Job directories are named `<lane>` in
+the legacy set and `<lane>_to_<bound>` in the matched set, so the two can share a tree safely. For long runs, `code/run_batch.sh` launches it
 detached with `caffeinate`.
 
 ### 4. Outputs (`results/`)

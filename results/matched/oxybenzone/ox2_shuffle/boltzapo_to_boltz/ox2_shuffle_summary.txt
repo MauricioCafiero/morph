@@ -1,0 +1,22 @@
+Surface charge / hydrophobic patch comparison: ox2_shuffle
+  boltzapo = /Users/cafierom/python_mac/peptidebuilder/runs/oxybenzone/folds/boltzapo/ox2_shuffle.pdb
+  boltz = /Users/cafierom/python_mac/peptidebuilder/runs/oxybenzone/boltz/boltz_results_ox2_shuffle/predictions/ox2_shuffle/ox2_shuffle_model_0.cif
+  31 residues; exposed if rSASA > 0.25; hydrophobic if KD >= 1.5
+
+== Positive (Arg/Lys) ==
+  boltzapo: 2 exposed [ARG1, LYS27]
+  boltz: 2 exposed [ARG1, LYS27]
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Negative (Asp/Glu) ==
+  boltzapo: 3 exposed [GLU3, ASP8, ASP25]
+  boltz: 3 exposed [GLU3, ASP8, ASP25]
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Hydrophobic (KD>=1.5) ==
+  boltzapo: 3 exposed [LEU6, ILE22, PHE31]
+  boltz: 3 exposed [LEU6, ILE22, PHE31]
+  newly exposed in boltz: (none)
+  buried on folding:          (none)

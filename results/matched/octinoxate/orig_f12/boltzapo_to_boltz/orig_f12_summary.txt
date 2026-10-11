@@ -1,0 +1,23 @@
+Surface charge / hydrophobic patch comparison: orig_f12
+  boltzapo = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/folds/boltzapo/orig_f12.pdb
+  boltz = /Users/cafierom/python_mac/peptidebuilder/runs/octinoxate/boltz/boltz_results_orig_f12/predictions/orig_f12/orig_f12_model_0.cif
+  33 residues; exposed if rSASA > 0.25; hydrophobic if KD >= 1.5
+
+== Positive (Arg/Lys) ==
+  boltzapo: 3 exposed [ARG1, LYS7, LYS17]
+  boltz: 3 exposed [ARG1, LYS7, LYS17]
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Negative (Asp/Glu) ==
+  boltzapo: 4 exposed [ASP4, GLU21, ASP26, GLU31]
+  boltz: 4 exposed [ASP4, GLU21, ASP26, GLU31]
+      patch 1: ASP4-ASP26
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
+
+== Hydrophobic (KD>=1.5) ==
+  boltzapo: 2 exposed [LEU12, ILE19]
+  boltz: 2 exposed [LEU12, ILE19]
+  newly exposed in boltz: (none)
+  buried on folding:          (none)
