@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-make_pymol.py — write one PyMOL script per peptide for its three apo -> bound morphs.
+make_pymol.py — write one PyMOL script per peptide for its three apo -> bound morphs,
+plus one patch viewer per lane job directory.
 
 Scans results/morphs/ (files named <mol>_<peptide>_<lane>_to_boltz.pdb) and, for every
 peptide, writes results/morphs/<mol>_<peptide>.pml. The script:
@@ -20,6 +21,11 @@ Run from the repo root (reads what run_batch.py produced):
     python code/make_pymol.py
 Then view one peptide from the morphs folder so the bare filenames resolve:
     cd results/morphs && pymol octinoxate_s3_esm2_f4.pml
+
+It also writes <peptide>_patches.pml into each results/<mol>/<peptide>/<lane>/ job
+directory (the loader for that pair of patch-colored PDBs, see surface_patches.py) so
+already-run jobs always have it. Then view the patch map from that job's folder:
+    cd results/oxybenzone/ox2_esm1_f8/of3apo && pymol ox2_esm1_f8_patches.pml
 """
 import os
 import sys
@@ -121,6 +127,29 @@ def main():
         written.append((mol_pep, sorted(lanes), pml))
 
     print(f"wrote {len(written)} per-peptide PyMOL scripts to {MORPHS}")
+
+    # patch viewers: one per lane job dir that has the patch-colored pair (surface_patches
+    # writes them when a job runs; this pass covers jobs done earlier)
+    import surface_patches as sp
+    RESULTS = os.path.dirname(MORPHS)
+    n_patches = 0
+    for mol in sorted(os.listdir(RESULTS)):
+        mol_dir = os.path.join(RESULTS, mol)
+        if not os.path.isdir(mol_dir):
+            continue
+        for pep in sorted(os.listdir(mol_dir)):
+            if pep.startswith("_"):
+                continue  # shared _boltz dir
+            pep_dir = os.path.join(mol_dir, pep)
+            if not os.path.isdir(pep_dir):
+                continue
+            for lane in LANE_ORDER:
+                lane_dir = os.path.join(pep_dir, lane)
+                if os.path.isfile(os.path.join(lane_dir, f"{pep}_{lane}.pdb")):
+                    sp.write_patch_pml(pep, [lane, "boltz"], lane_dir)
+                    n_patches += 1
+    if n_patches:
+        print(f"wrote {n_patches} patch viewer scripts into results/<mol>/<pep>/<lane>/")
     for mol_pep, lanes, _ in written:
         print(f"  {mol_pep}.pml  ({', '.join(lanes)})")
 

@@ -11,9 +11,11 @@ Then it diffs the two states: which spots persist, bury, newly expose, and which
 patches are gained or lost when the peptide folds into the bound form.
 
 Outputs (into --outdir):
-  <tag>_<state>.pdb   peptide, B-factor = residue charge, occupancy = hydrophobicity
-                      (PyMOL: `spectrum b, blue_white_red` for charge;
-                              `spectrum q, white_orange`  for hydrophobicity)
+  <tag>_<state>.pdb   peptide, occupancy = residue charge, B-factor = hydrophobicity
+                      (PyMOL: `spectrum q, blue_white_red`  for charge;
+                              `spectrum b, white_orange`   for hydrophobicity)
+  <tag>_patches.pml   loader: runs from that folder, colors via the spectrum
+                      commands (charge by default; `hydro` / `charge` to switch)
   <tag>_residues.csv  per-residue charge / KD / rSASA(apo,cof) / exposure change
   <tag>_summary.txt   patches per state and the apo->cofold diff
 
@@ -92,6 +94,42 @@ def find_patches(idxs, coords, cutoff=PATCH_CUT):
     return sorted(patches, key=len, reverse=True)
 
 
+def write_patch_pml(tag, labels, outdir):
+    """PyMOL loader for the patch-colored pair: charge palette by default.
+
+    Writes <tag>_patches.pml into outdir, next to the two PDBs produced by analyze().
+    Run from that folder; click either object name to show one state. `hydro` switches
+    the palette to hydrophobicity (B-factor), `charge` switches back to charge (occupancy).
+    """
+    names = [f"{tag}_{lab}" for lab in labels]
+    parts = [
+        f"# {tag}: patch-colored apo vs bound, superposed on the {labels[0]} frame.",
+        f"# Run from this folder:  pymol {tag}_patches.pml   (click either name to show it)",
+        "# Colored by charge (occupancy): blue-white-red = -1 to +1. At the PyMOL prompt,",
+        "# `hydro` switches the palette to hydrophobicity (B-factor: white-orange = 0-1);",
+        "# `charge` switches back.",
+        "reinitialize",
+        "bg_color black",
+    ]
+    parts += [f"load {name}.pdb, {name}" for name in names]
+    parts += [
+        f"spectrum q, blue_white_red, {name}, minimum=-1, maximum=1" for name in names
+    ]
+    parts += [
+        "show cartoon, all",
+        f"disable {names[1]}",
+        "orient all",
+        "python",
+        "from pymol import cmd",
+        "cmd.extend('charge', lambda: cmd.spectrum('q', 'blue_white_red', 'all', "
+        "minimum=-1, maximum=1))",
+        "cmd.extend('hydro', lambda: cmd.spectrum('b', 'white_orange', 'all', "
+        "minimum=0, maximum=1))",
+        "python end",
+    ]
+    open(os.path.join(outdir, f"{tag}_patches.pml"), "w").write("\n".join(parts) + "\n")
+
+
 def analyze(structures, tag="peptide", labels=("apo", "cofold"), outdir="patches",
             chain="A", expose=0.25, verbose=True):
     """Compare charged/hydrophobic surface patches between two states. Returns a summary dict."""
@@ -127,7 +165,8 @@ def analyze(structures, tag="peptide", labels=("apo", "cofold"), outdir="patches
     charge = np.array([CHARGE.get(r, 0) for r in names_a])
     kd = np.array([KD.get(r, 0.0) for r in names_a])
 
-    # bake charge -> B-factor, hydrophobicity -> occupancy, for PyMOL surface coloring
+    # bake charge -> occupancy (-1..1), hydrophobicity -> B-factor (rescaled 0..1),
+    # for PyMOL surface coloring (charge = `spectrum q`, hydrophobicity = `spectrum b`)
     for st, lab in zip(structs, labels):
         p = os.path.join(outdir, f"{tag}_{lab}.pdb")
         lines = []
@@ -135,11 +174,12 @@ def analyze(structures, tag="peptide", labels=("apo", "cofold"), outdir="patches
             name, resname, resseq, element, xyz = st[k]
             i = int(np.where(rn_a == resseq)[0][0]) if resseq in rn_a else 0
             nm = name if len(name) >= 4 else f" {name:<3}"
-            q = max(min(kd[i] / 4.5, 1.0), 0.0)                 # 0..1 hydrophobicity -> occupancy
+            b = max(min(kd[i] / 4.5, 1.0), 0.0)                 # 0..1 hydrophobicity -> B-factor
             lines.append(f"ATOM  {serial:5d} {nm} {resname:>3} A{resseq:4d}   "
-                         f"{xyz[0]:8.3f}{xyz[1]:8.3f}{xyz[2]:8.3f}{q:6.2f}{charge[i]:6.2f}"
+                         f"{xyz[0]:8.3f}{xyz[1]:8.3f}{xyz[2]:8.3f}{charge[i]:6.2f}{b:6.2f}"
                          f"          {element:>2}\n")
         open(p, "w").writelines(lines + ["END\n"])
+    write_patch_pml(tag, labels, outdir)
 
     # classify spots per state
     def spots(sasa):

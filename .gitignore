@@ -1,5 +1,6 @@
 __pycache__/
 *.pyc
+/LOCAL.md
 results/run.out
 results/run.log
 
@@ -9,3 +10,4 @@ results/run.log
 results/morphs/
 results/**/*.pdb
 results/**/metrics.json
+results/**/*.pml
