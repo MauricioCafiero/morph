@@ -14,22 +14,30 @@ There are two sets of pairs, selected with `--set`:
 
 | set | pairs | output | what a ΔE means |
 |---|---|---|---|
-| `legacy` (default) | ESMFold, OF3-apo, RF3-apo → **the Boltz co-fold** | `results/` | mixes two effects: the ligand's, and the change of model between the apo and bound ends |
-| `matched` | Boltz-apo → Boltz, OF3-apo → OF3, RF3-apo → RF3 | `results/matched/` | the ligand's effect **within one model** |
+| `matched` (default) | Boltz-apo → Boltz, OF3-apo → OF3, RF3-apo → RF3 | `results/` | the ligand's effect **within one model** |
+| `legacy` | ESMFold, OF3-apo, RF3-apo → **the Boltz co-fold** | `results/legacy/` | superseded: mixes the ligand's effect with a change of model between the apo and bound ends |
 
 The legacy set came first, when no Boltz apo fold existed: all three apo lanes were morphed to
 the single Boltz co-fold, so an apo fold from one model was compared against a bound fold from
 another. Every co-folder now has its own apo lane (Boltz apo added 2026-10-11), so the matched
 set pairs each apo fold with its own model's co-fold and the difference is attributable to the
-ligand. Both sets are kept: the legacy one is the only place ESMFold appears, having no co-fold
-of its own, and its three-apo-lanes-one-bound-structure layout is still the right comparison
-for "how much do independent apo models differ about the same bound state".
+ligand. **The matched set replaces it** (2026-10-11).
+
+The legacy set's distinguishing feature was being the only place ESMFold appears, having no
+co-fold of its own — and that is now a reason to retire it rather than keep it. Inverse-folding
+perplexity over all six fold lanes (the `pepgraph` repo) puts ESMFold last by a wide margin: it
+owns 7 of the 11 structures whose geometry carries no sequence information at all, and 6 of
+those have *exactly zero* residue contacts, Rg 19–28 Å. It emits extended chains without
+secondary structure for these ligand-dependent designs, so morphing from one is measuring a
+model failure, not an apo state. The set stays runnable for provenance, and its outputs are
+regenerable with `--set legacy`, but nothing should be concluded from it.
 
 In the matched set's Boltz column, BoltzGen peptides (`bg33_*`, `bgox31_*`) keep BoltzGen's own
 design co-fold as the bound reference, there being no Boltz co-fold for those sequences — so
 that column is model-matched for 13 of 21 peptides and BoltzGen-bound for the other 8.
 
-Each set is summarized one row per peptide in its own `RESULTS.md`. Strain is meant as a
+Each set is summarized one row per peptide in its own `RESULTS.md` (`results/RESULTS.md` for
+the matched set, `results/legacy/RESULTS.md` for the superseded one). Strain is meant as a
 qualitative cross-check on the binding energetics computed elsewhere (MM/GBSA in
 `peptidebuilder`, absolute binding free energy in `fep`), not as a binding energy itself.
 
@@ -71,8 +79,8 @@ PY=<path-to-env>/bin/python
 
 ```sh
 cd <repo root>
-$PY code/run_batch.py                  # legacy set -> results/
-$PY code/run_batch.py --set matched    # matched set -> results/matched/
+$PY code/run_batch.py                  # matched set (default) -> results/
+$PY code/run_batch.py --set legacy     # superseded set        -> results/legacy/
 ```
 Each set is 21 peptides × 3 pairs (63 jobs, about 1–2 minutes), then writes the summary
 tables, `RESULTS.md`, and one PyMOL script per peptide. It is resumable: each job writes

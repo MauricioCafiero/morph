@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """
-run_batch.py — morph + strain + surface-patch analysis for every peptide, across all
-three apo lanes (ESMFold, OF3-apo, RF3-apo).
+run_batch.py — morph + strain + surface-patch analysis for every peptide, pairing each
+apo fold with its own model's co-fold (Boltz apo -> Boltz, OF3 apo -> OF3, RF3 apo -> RF3).
 
-Peptides are the apo folds that have a bound structure: the Boltz co-fold, or for
-BoltzGen peptides (bg33_N, bgox31_N) BoltzGen's own co-fold from boltzgen_local.
+The bound reference is that pair's co-fold; for BoltzGen peptides (bg33_N, bgox31_N) in
+the Boltz pair it is BoltzGen's own co-fold from boltzgen_local, no Boltz co-fold existing
+for those sequences. `--set legacy` reruns the superseded first analysis, which morphed
+ESMFold / OF3-apo / RF3-apo all to the Boltz co-fold.
 Input roots can be overridden with MORPH_PEP_ROOT and MORPH_BOLTZGEN_ROOT. For each
 (molecule, peptide, lane) it writes under results/:
 
@@ -59,8 +61,8 @@ MATCHED_PAIRS = [("boltzapo", "boltz"), ("of3apo", "openfold3"), ("rf3apo", "rf3
 SETS = {"legacy": LEGACY_PAIRS, "matched": MATCHED_PAIRS}
 
 # both set by main() from --set; module level so the helpers below can see them
-PAIRS = LEGACY_PAIRS
-SETNAME = "legacy"
+PAIRS = MATCHED_PAIRS
+SETNAME = "matched"
 RESULTS = os.path.join(REPO, "results")
 
 
@@ -112,15 +114,15 @@ def main():
     global PAIRS, SETNAME, RESULTS
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--set", choices=sorted(SETS), default="legacy", dest="setname",
-                    help="legacy: all apo lanes -> the Boltz co-fold, written to results/ "
-                         "(the original run). matched: each apo lane -> its own model's "
-                         "co-fold, written to results/matched/ so the legacy tree is untouched")
+    ap.add_argument("--set", choices=sorted(SETS), default="matched", dest="setname",
+                    help="matched (default): each apo lane -> its own model's co-fold, written "
+                         "to results/. legacy: all apo lanes -> the Boltz co-fold, written to "
+                         "results/legacy/ -- the superseded original run, kept runnable")
     ap.add_argument("--results", help="override the output directory")
     args = ap.parse_args()
     SETNAME = args.setname
     PAIRS = SETS[SETNAME]
-    RESULTS = args.results or (os.path.join(REPO, "results") if SETNAME == "legacy"
+    RESULTS = args.results or (os.path.join(REPO, "results") if SETNAME == "matched"
                                else os.path.join(REPO, "results", SETNAME))
     os.makedirs(RESULTS, exist_ok=True)
     skipped = []

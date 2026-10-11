@@ -1,0 +1,195 @@
+[16:00:14] 63 (mol,peptide,lane) jobs; 0 peptides skipped (no co-fold)
+[16:00:15] ok   1/63 octinoxate/bg33_1/esmfold  dE=-127.9 kcal/mol  buried=0
+[16:00:16] ok   2/63 octinoxate/bg33_1/of3apo  dE=-241.6 kcal/mol  buried=0
+[16:00:16] ok   3/63 octinoxate/bg33_1/rf3apo  dE=+20.8 kcal/mol  buried=0
+[16:00:17] ok   4/63 octinoxate/bg33_2/esmfold  dE=-272.4 kcal/mol  buried=0
+[16:00:17] ok   5/63 octinoxate/bg33_2/of3apo  dE=-22.8 kcal/mol  buried=0
+[16:00:17] ok   6/63 octinoxate/bg33_2/rf3apo  dE=+3.8 kcal/mol  buried=0
+[16:00:18] ok   7/63 octinoxate/bg33_3/esmfold  dE=+45.0 kcal/mol  buried=1
+[16:00:19] ok   8/63 octinoxate/bg33_3/of3apo  dE=+58.6 kcal/mol  buried=0
+[16:00:19] ok   9/63 octinoxate/bg33_3/rf3apo  dE=+23.5 kcal/mol  buried=1
+[16:00:20] ok   10/63 octinoxate/bg33_4/esmfold  dE=-31.8 kcal/mol  buried=0
+[16:00:20] ok   11/63 octinoxate/bg33_4/of3apo  dE=-48.2 kcal/mol  buried=0
+[16:00:21] ok   12/63 octinoxate/bg33_4/rf3apo  dE=-70.3 kcal/mol  buried=0
+[16:00:21] skip (done) 13/63 octinoxate/orig_f12/esmfold
+[16:00:21] skip (done) 14/63 octinoxate/orig_f12/of3apo
+[16:00:21] skip (done) 15/63 octinoxate/orig_f12/rf3apo
+[16:00:21] skip (done) 16/63 octinoxate/s2_esm2_control/esmfold
+[16:00:21] skip (done) 17/63 octinoxate/s2_esm2_control/of3apo
+[16:00:21] skip (done) 18/63 octinoxate/s2_esm2_control/rf3apo
+[16:00:21] skip (done) 19/63 octinoxate/s3_esm2_f4/esmfold
+[16:00:21] skip (done) 20/63 octinoxate/s3_esm2_f4/of3apo
+[16:00:21] skip (done) 21/63 octinoxate/s3_esm2_f4/rf3apo
+[16:00:21] skip (done) 22/63 octinoxate/s3_orig_f12/esmfold
+[16:00:21] skip (done) 23/63 octinoxate/s3_orig_f12/of3apo
+[16:00:21] skip (done) 24/63 octinoxate/s3_orig_f12/rf3apo
+[16:00:21] skip (done) 25/63 octinoxate/shuffle_control/esmfold
+[16:00:21] skip (done) 26/63 octinoxate/shuffle_control/of3apo
+[16:00:21] skip (done) 27/63 octinoxate/shuffle_control/rf3apo
+[16:00:21] skip (done) 28/63 octinoxate/shuffle_control_esm0/esmfold
+[16:00:21] skip (done) 29/63 octinoxate/shuffle_control_esm0/of3apo
+[16:00:21] skip (done) 30/63 octinoxate/shuffle_control_esm0/rf3apo
+[16:00:21] ok   31/63 oxybenzone/bgox31_2/esmfold  dE=+26.7 kcal/mol  buried=0
+[16:00:22] ok   32/63 oxybenzone/bgox31_2/of3apo  dE=+55.0 kcal/mol  buried=0
+[16:00:22] ok   33/63 oxybenzone/bgox31_2/rf3apo  dE=+74.3 kcal/mol  buried=0
+[16:00:23] ok   34/63 oxybenzone/bgox31_3/esmfold  dE=-6.8 kcal/mol  buried=0
+[16:00:23] ok   35/63 oxybenzone/bgox31_3/of3apo  dE=+47.9 kcal/mol  buried=1
+[16:00:24] ok   36/63 oxybenzone/bgox31_3/rf3apo  dE=+39.0 kcal/mol  buried=0
+[16:00:25] ok   37/63 oxybenzone/bgox31_4/esmfold  dE=+0.7 kcal/mol  buried=6
+[16:00:25] ok   38/63 oxybenzone/bgox31_4/of3apo  dE=+81.8 kcal/mol  buried=1
+[16:00:26] ok   39/63 oxybenzone/bgox31_4/rf3apo  dE=-81.7 kcal/mol  buried=0
+[16:00:27] ok   40/63 oxybenzone/bgox31_5/esmfold  dE=+26.8 kcal/mol  buried=3
+[16:00:27] ok   41/63 oxybenzone/bgox31_5/of3apo  dE=+89.7 kcal/mol  buried=0
+[16:00:27] ok   42/63 oxybenzone/bgox31_5/rf3apo  dE=+27.1 kcal/mol  buried=0
+[16:00:27] skip (done) 43/63 oxybenzone/ox1_esm1_f8/esmfold
+[16:00:27] skip (done) 44/63 oxybenzone/ox1_esm1_f8/of3apo
+[16:00:27] skip (done) 45/63 oxybenzone/ox1_esm1_f8/rf3apo
+[16:00:27] skip (done) 46/63 oxybenzone/ox1_orig_f12/esmfold
+[16:00:27] skip (done) 47/63 oxybenzone/ox1_orig_f12/of3apo
+[16:00:27] skip (done) 48/63 oxybenzone/ox1_orig_f12/rf3apo
+[16:00:27] skip (done) 49/63 oxybenzone/ox2_esm1_f8/esmfold
+[16:00:27] skip (done) 50/63 oxybenzone/ox2_esm1_f8/of3apo
+[16:00:27] skip (done) 51/63 oxybenzone/ox2_esm1_f8/rf3apo
+[16:00:27] skip (done) 52/63 oxybenzone/ox2_orig_f8/esmfold
+[16:00:27] skip (done) 53/63 oxybenzone/ox2_orig_f8/of3apo
+[16:00:27] skip (done) 54/63 oxybenzone/ox2_orig_f8/rf3apo
+[16:00:27] skip (done) 55/63 oxybenzone/ox2_shuffle/esmfold
+[16:00:27] skip (done) 56/63 oxybenzone/ox2_shuffle/of3apo
+[16:00:27] skip (done) 57/63 oxybenzone/ox2_shuffle/rf3apo
+[16:00:27] skip (done) 58/63 oxybenzone/ox2_shuffle_esm0/esmfold
+[16:00:27] skip (done) 59/63 oxybenzone/ox2_shuffle_esm0/of3apo
+[16:00:27] skip (done) 60/63 oxybenzone/ox2_shuffle_esm0/rf3apo
+[16:00:27] skip (done) 61/63 oxybenzone/ox3_orig_f8/esmfold
+[16:00:27] skip (done) 62/63 oxybenzone/ox3_orig_f8/of3apo
+[16:00:27] skip (done) 63/63 oxybenzone/ox3_orig_f8/rf3apo
+[16:00:27] DONE: 24 analyses this run; 63 total in results; skipped 0 peptides (no co-fold)
+[18:40:01] 63 (mol,peptide,lane) jobs; 0 peptides skipped (no co-fold)
+[18:40:01] skip (done) 1/63 octinoxate/bg33_1/esmfold
+[18:40:01] skip (done) 2/63 octinoxate/bg33_1/of3apo
+[18:40:01] skip (done) 3/63 octinoxate/bg33_1/rf3apo
+[18:40:01] skip (done) 4/63 octinoxate/bg33_2/esmfold
+[18:40:01] skip (done) 5/63 octinoxate/bg33_2/of3apo
+[18:40:01] skip (done) 6/63 octinoxate/bg33_2/rf3apo
+[18:40:01] skip (done) 7/63 octinoxate/bg33_3/esmfold
+[18:40:01] skip (done) 8/63 octinoxate/bg33_3/of3apo
+[18:40:01] skip (done) 9/63 octinoxate/bg33_3/rf3apo
+[18:40:01] skip (done) 10/63 octinoxate/bg33_4/esmfold
+[18:40:01] skip (done) 11/63 octinoxate/bg33_4/of3apo
+[18:40:01] skip (done) 12/63 octinoxate/bg33_4/rf3apo
+[18:40:01] skip (done) 13/63 octinoxate/orig_f12/esmfold
+[18:40:01] skip (done) 14/63 octinoxate/orig_f12/of3apo
+[18:40:01] skip (done) 15/63 octinoxate/orig_f12/rf3apo
+[18:40:01] skip (done) 16/63 octinoxate/s2_esm2_control/esmfold
+[18:40:01] skip (done) 17/63 octinoxate/s2_esm2_control/of3apo
+[18:40:01] skip (done) 18/63 octinoxate/s2_esm2_control/rf3apo
+[18:40:01] skip (done) 19/63 octinoxate/s3_esm2_f4/esmfold
+[18:40:01] skip (done) 20/63 octinoxate/s3_esm2_f4/of3apo
+[18:40:01] skip (done) 21/63 octinoxate/s3_esm2_f4/rf3apo
+[18:40:01] skip (done) 22/63 octinoxate/s3_orig_f12/esmfold
+[18:40:01] skip (done) 23/63 octinoxate/s3_orig_f12/of3apo
+[18:40:01] skip (done) 24/63 octinoxate/s3_orig_f12/rf3apo
+[18:40:01] skip (done) 25/63 octinoxate/shuffle_control/esmfold
+[18:40:01] skip (done) 26/63 octinoxate/shuffle_control/of3apo
+[18:40:01] skip (done) 27/63 octinoxate/shuffle_control/rf3apo
+[18:40:01] skip (done) 28/63 octinoxate/shuffle_control_esm0/esmfold
+[18:40:01] skip (done) 29/63 octinoxate/shuffle_control_esm0/of3apo
+[18:40:01] skip (done) 30/63 octinoxate/shuffle_control_esm0/rf3apo
+[18:40:01] skip (done) 31/63 oxybenzone/bgox31_2/esmfold
+[18:40:01] skip (done) 32/63 oxybenzone/bgox31_2/of3apo
+[18:40:01] skip (done) 33/63 oxybenzone/bgox31_2/rf3apo
+[18:40:01] skip (done) 34/63 oxybenzone/bgox31_3/esmfold
+[18:40:01] skip (done) 35/63 oxybenzone/bgox31_3/of3apo
+[18:40:01] skip (done) 36/63 oxybenzone/bgox31_3/rf3apo
+[18:40:01] skip (done) 37/63 oxybenzone/bgox31_4/esmfold
+[18:40:01] skip (done) 38/63 oxybenzone/bgox31_4/of3apo
+[18:40:01] skip (done) 39/63 oxybenzone/bgox31_4/rf3apo
+[18:40:01] skip (done) 40/63 oxybenzone/bgox31_5/esmfold
+[18:40:01] skip (done) 41/63 oxybenzone/bgox31_5/of3apo
+[18:40:01] skip (done) 42/63 oxybenzone/bgox31_5/rf3apo
+[18:40:01] skip (done) 43/63 oxybenzone/ox1_esm1_f8/esmfold
+[18:40:01] skip (done) 44/63 oxybenzone/ox1_esm1_f8/of3apo
+[18:40:01] skip (done) 45/63 oxybenzone/ox1_esm1_f8/rf3apo
+[18:40:01] skip (done) 46/63 oxybenzone/ox1_orig_f12/esmfold
+[18:40:01] skip (done) 47/63 oxybenzone/ox1_orig_f12/of3apo
+[18:40:01] skip (done) 48/63 oxybenzone/ox1_orig_f12/rf3apo
+[18:40:01] skip (done) 49/63 oxybenzone/ox2_esm1_f8/esmfold
+[18:40:01] skip (done) 50/63 oxybenzone/ox2_esm1_f8/of3apo
+[18:40:01] skip (done) 51/63 oxybenzone/ox2_esm1_f8/rf3apo
+[18:40:01] skip (done) 52/63 oxybenzone/ox2_orig_f8/esmfold
+[18:40:01] skip (done) 53/63 oxybenzone/ox2_orig_f8/of3apo
+[18:40:01] skip (done) 54/63 oxybenzone/ox2_orig_f8/rf3apo
+[18:40:01] skip (done) 55/63 oxybenzone/ox2_shuffle/esmfold
+[18:40:01] skip (done) 56/63 oxybenzone/ox2_shuffle/of3apo
+[18:40:01] skip (done) 57/63 oxybenzone/ox2_shuffle/rf3apo
+[18:40:01] skip (done) 58/63 oxybenzone/ox2_shuffle_esm0/esmfold
+[18:40:01] skip (done) 59/63 oxybenzone/ox2_shuffle_esm0/of3apo
+[18:40:01] skip (done) 60/63 oxybenzone/ox2_shuffle_esm0/rf3apo
+[18:40:01] skip (done) 61/63 oxybenzone/ox3_orig_f8/esmfold
+[18:40:01] skip (done) 62/63 oxybenzone/ox3_orig_f8/of3apo
+[18:40:01] skip (done) 63/63 oxybenzone/ox3_orig_f8/rf3apo
+[18:40:01] DONE: 0 analyses this run; 63 total in results; skipped 0 peptides (no co-fold)
+[07:36:21] 63 (mol,peptide,lane) jobs; 0 peptides skipped (no co-fold)
+[07:36:21] ok   1/63 octinoxate/bg33_1/esmfold  dE=-127.9 kcal/mol  buried=0
+[07:36:21] ok   2/63 octinoxate/bg33_1/of3apo  dE=-242.1 kcal/mol  buried=0
+[07:36:22] ok   3/63 octinoxate/bg33_1/rf3apo  dE=+20.7 kcal/mol  buried=0
+[07:36:22] ok   4/63 octinoxate/bg33_2/esmfold  dE=-272.4 kcal/mol  buried=0
+[07:36:22] ok   5/63 octinoxate/bg33_2/of3apo  dE=-22.7 kcal/mol  buried=0
+[07:36:22] ok   6/63 octinoxate/bg33_2/rf3apo  dE=+3.9 kcal/mol  buried=0
+[07:36:23] ok   7/63 octinoxate/bg33_3/esmfold  dE=+45.1 kcal/mol  buried=1
+[07:36:23] ok   8/63 octinoxate/bg33_3/of3apo  dE=+58.6 kcal/mol  buried=0
+[07:36:23] ok   9/63 octinoxate/bg33_3/rf3apo  dE=+23.6 kcal/mol  buried=1
+[07:36:24] ok   10/63 octinoxate/bg33_4/esmfold  dE=-31.7 kcal/mol  buried=0
+[07:36:24] ok   11/63 octinoxate/bg33_4/of3apo  dE=-48.2 kcal/mol  buried=0
+[07:36:24] ok   12/63 octinoxate/bg33_4/rf3apo  dE=-70.4 kcal/mol  buried=0
+[07:36:24] ok   13/63 octinoxate/orig_f12/esmfold  dE=+18.4 kcal/mol  buried=5
+[07:36:24] ok   14/63 octinoxate/orig_f12/of3apo  dE=-65.5 kcal/mol  buried=3
+[07:36:25] ok   15/63 octinoxate/orig_f12/rf3apo  dE=-138.6 kcal/mol  buried=2
+[07:36:25] ok   16/63 octinoxate/s2_esm2_control/esmfold  dE=+95.1 kcal/mol  buried=1
+[07:36:26] ok   17/63 octinoxate/s2_esm2_control/of3apo  dE=+56.9 kcal/mol  buried=1
+[07:36:26] ok   18/63 octinoxate/s2_esm2_control/rf3apo  dE=-0.1 kcal/mol  buried=1
+[07:36:27] ok   19/63 octinoxate/s3_esm2_f4/esmfold  dE=+1.0 kcal/mol  buried=6
+[07:36:27] ok   20/63 octinoxate/s3_esm2_f4/of3apo  dE=-24.3 kcal/mol  buried=6
+[07:36:27] ok   21/63 octinoxate/s3_esm2_f4/rf3apo  dE=+44.9 kcal/mol  buried=5
+[07:36:28] ok   22/63 octinoxate/s3_orig_f12/esmfold  dE=-20.9 kcal/mol  buried=9
+[07:36:28] ok   23/63 octinoxate/s3_orig_f12/of3apo  dE=-54.8 kcal/mol  buried=5
+[07:36:28] ok   24/63 octinoxate/s3_orig_f12/rf3apo  dE=+18.5 kcal/mol  buried=8
+[07:36:29] ok   25/63 octinoxate/shuffle_control/esmfold  dE=+132.9 kcal/mol  buried=9
+[07:36:29] ok   26/63 octinoxate/shuffle_control/of3apo  dE=+96.1 kcal/mol  buried=5
+[07:36:29] ok   27/63 octinoxate/shuffle_control/rf3apo  dE=+68.7 kcal/mol  buried=7
+[07:36:30] ok   28/63 octinoxate/shuffle_control_esm0/esmfold  dE=-102.6 kcal/mol  buried=1
+[07:36:30] ok   29/63 octinoxate/shuffle_control_esm0/of3apo  dE=-8.2 kcal/mol  buried=1
+[07:36:31] ok   30/63 octinoxate/shuffle_control_esm0/rf3apo  dE=-48.6 kcal/mol  buried=0
+[07:36:31] ok   31/63 oxybenzone/bgox31_2/esmfold  dE=+26.7 kcal/mol  buried=0
+[07:36:31] ok   32/63 oxybenzone/bgox31_2/of3apo  dE=+55.1 kcal/mol  buried=0
+[07:36:31] ok   33/63 oxybenzone/bgox31_2/rf3apo  dE=+74.2 kcal/mol  buried=0
+[07:36:32] ok   34/63 oxybenzone/bgox31_3/esmfold  dE=-6.9 kcal/mol  buried=0
+[07:36:32] ok   35/63 oxybenzone/bgox31_3/of3apo  dE=+47.9 kcal/mol  buried=1
+[07:36:32] ok   36/63 oxybenzone/bgox31_3/rf3apo  dE=+39.0 kcal/mol  buried=0
+[07:36:33] ok   37/63 oxybenzone/bgox31_4/esmfold  dE=+0.7 kcal/mol  buried=6
+[07:36:33] ok   38/63 oxybenzone/bgox31_4/of3apo  dE=+81.8 kcal/mol  buried=1
+[07:36:34] ok   39/63 oxybenzone/bgox31_4/rf3apo  dE=-110.6 kcal/mol  buried=0
+[07:36:34] ok   40/63 oxybenzone/bgox31_5/esmfold  dE=+26.6 kcal/mol  buried=3
+[07:36:35] ok   41/63 oxybenzone/bgox31_5/of3apo  dE=+89.6 kcal/mol  buried=0
+[07:36:35] ok   42/63 oxybenzone/bgox31_5/rf3apo  dE=+27.1 kcal/mol  buried=0
+[07:36:35] ok   43/63 oxybenzone/ox1_esm1_f8/esmfold  dE=-214.0 kcal/mol  buried=2
+[07:36:35] ok   44/63 oxybenzone/ox1_esm1_f8/of3apo  dE=-73.6 kcal/mol  buried=2
+[07:36:36] ok   45/63 oxybenzone/ox1_esm1_f8/rf3apo  dE=-114.0 kcal/mol  buried=1
+[07:36:36] ok   46/63 oxybenzone/ox1_orig_f12/esmfold  dE=-11.5 kcal/mol  buried=3
+[07:36:36] ok   47/63 oxybenzone/ox1_orig_f12/of3apo  dE=-41.2 kcal/mol  buried=2
+[07:36:36] ok   48/63 oxybenzone/ox1_orig_f12/rf3apo  dE=-23.6 kcal/mol  buried=2
+[07:36:37] ok   49/63 oxybenzone/ox2_esm1_f8/esmfold  dE=-65.6 kcal/mol  buried=4
+[07:36:37] ok   50/63 oxybenzone/ox2_esm1_f8/of3apo  dE=-20.7 kcal/mol  buried=3
+[07:36:37] ok   51/63 oxybenzone/ox2_esm1_f8/rf3apo  dE=-1.2 kcal/mol  buried=2
+[07:36:37] ok   52/63 oxybenzone/ox2_orig_f8/esmfold  dE=+50.8 kcal/mol  buried=6
+[07:36:38] ok   53/63 oxybenzone/ox2_orig_f8/of3apo  dE=-19.0 kcal/mol  buried=5
+[07:36:38] ok   54/63 oxybenzone/ox2_orig_f8/rf3apo  dE=-40.9 kcal/mol  buried=5
+[07:36:38] ok   55/63 oxybenzone/ox2_shuffle/esmfold  dE=+133.6 kcal/mol  buried=11
+[07:36:38] ok   56/63 oxybenzone/ox2_shuffle/of3apo  dE=+51.2 kcal/mol  buried=7
+[07:36:38] ok   57/63 oxybenzone/ox2_shuffle/rf3apo  dE=+38.6 kcal/mol  buried=5
+[07:36:39] ok   58/63 oxybenzone/ox2_shuffle_esm0/esmfold  dE=-85.1 kcal/mol  buried=1
+[07:36:39] ok   59/63 oxybenzone/ox2_shuffle_esm0/of3apo  dE=-53.7 kcal/mol  buried=1
+[07:36:40] ok   60/63 oxybenzone/ox2_shuffle_esm0/rf3apo  dE=-157.5 kcal/mol  buried=1
+[07:36:40] ok   61/63 oxybenzone/ox3_orig_f8/esmfold  dE=-163.0 kcal/mol  buried=6
+[07:36:41] ok   62/63 oxybenzone/ox3_orig_f8/of3apo  dE=-154.1 kcal/mol  buried=4
+[07:36:41] ok   63/63 oxybenzone/ox3_orig_f8/rf3apo  dE=+7.2 kcal/mol  buried=3
+[07:36:41] DONE: 63 analyses this run; 63 total in results; skipped 0 peptides (no co-fold)
